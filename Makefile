@@ -16,52 +16,49 @@ CC = gcc
 
 CFLAG = -Wall -Wextra -Werror
 
-NAME = ./wolf3d
+NAME = wolf3d
 
-SRCDIR=		./sources/
+SRCDIR=		./src/
+
 SRC=		main.c        \
+			init_sdl.c 	   \
+			parse.c 		\
+			core.c 			 \
+			settings.c
 			      
 SRCFIL=		$(addprefix $(SRCDIR),$(SRC))
 
 OBJ = $(SRC:.c=.o)
+
 OBJDIR = ./obj/
 
 LIBFT = ./lib/libft/
 
 LIBFTEXE = $(LIBFT)libft.a
 
-MLX = ./lib/minilibx_macos/
-
-MLXEXE = $(MLX)libmlx.a
-
-FW = -framework OpenGL -framework AppKit
+SDL_FW = ./lib/SDL2.framework/SDL2
 
 all:    $(NAME)
 
-$(NAME): $(addprefix $(OBJDIR),$(OBJ)) $(LIBFTEXE) $(MLXEXE)
-		@$(CC) $(CFLAG) -L $(LIBFT)  -lft -L $(MLX) -lmlx -o $(NAME)\
-		$(addprefix $(OBJDIR), $(OBJ))  $(FW)
+$(NAME): $(addprefix $(OBJDIR),$(OBJ)) $(LIBFTEXE)
+		@$(CC) $(CFLAG) -L $(LIBFT) -lft -o $(NAME)\
+		$(addprefix $(OBJDIR), $(OBJ)) $(SDL_FW)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
 		@mkdir -p $(OBJDIR)
-		@$(CC) $(CFLAG) -I ./ -I  $(LIBFT)  -c $(SRCFIL) -o $@
+		@$(CC) $(CFLAG) -I ./ -I  $(LIBFT)  -o $@ -c $<
 
 $(LIBFTEXE): $(LIBFT)
 		@make -k -s -C $(LIBFT)	
 
-$(MLXEXE): $(MLX)
-		@make -k -s -C $(MLX)
-
 clean:	
-		@rm -Rf  $(OBJ)
+		@rm -Rf  $(OBJDIR)
 		@make -C $(LIBFT) clean
-		@make -C $(MLX) clean
 
 fclean: 
 		@rm -Rf  $(OBJDIR)	
 		@rm -f $(NAME)
 		@make -C $(LIBFT) fclean
-		@make -C $(MLX) clean
 
 re:		fclean all
 

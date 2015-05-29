@@ -13,45 +13,52 @@
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include <math.h>
 #include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include "libft/libft.h"
+#include "SDL2.framework/Headers/SDL.h"
 
-typedef struct 					s_coord
-{
-	int x;
-	int y;
-	int type;
-} 								t_coord;
-
-typedef struct 					s_block
-{
-	t_coord 	*a;
-	t_coord 	*b;
-	t_coord 	*c;
-	t_coord 	*d;
-	int 		type;
-
-}								t_block;
+# define NAME "wolf3d"
+# define WIDTH 640
+# define HEIGHT 400
+# define MXSIZE world->mapxs
+# define MYSIZE world->mapys
+# define KEY w->event.key.keysym.sym
 
 typedef struct					s_env
 {
-	t_coord 	***coord;
-	t_block		***block;
+	/*   SDL   */
+	SDL_Event		event;
+	SDL_Renderer	*rdr;
+	SDL_Texture		*txtr;
+	SDL_Window		*win;
+	Uint32			*pix;
+	/*   MAP   */
+	int 			**map;
+	int 			mapxs;
+	int 			mapys;
+	/* PLAYER  */
+	double 			posx;
+	double 			posy;
+	double 			dirx;
+	double 			diry;
+	double 			planx;
+	double 			plany;
+	/* SCREEN  */
+	int 			wscr;
+	int 			hscr;
+	/*   FPS   */
+	double 			ptime;
+	double 			otime;
 }								t_env;
 
-typedef struct 					s_all
-{
-	char 		**av;
-	char 		**tab;
-	char 		**tmp;
-	int 		y;
-	int 		x;
-} 								t_map;
-
-t_coord     ***ft_get_coord(t_map *map);
+int 	init_sdl(t_env *w);
+int 	parse(char *av, t_env *world);
+void 	dance(t_env *w);
+void 	exit_game(t_env *w);
+void 	init_player(t_env *w);
 
 #endif
