@@ -60,5 +60,6 @@ int 	parse(char *av, t_env *world);
 void 	dance(t_env *w);
 void 	exit_game(t_env *w);
 void 	init_player(t_env *w);
+void 	and_there_was_light(t_env *w);
 
 #endif

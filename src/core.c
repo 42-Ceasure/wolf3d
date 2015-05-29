@@ -12,9 +12,16 @@
 
 #include "../lib/wolf3d.h"
 
+void 		button_events(t_env *w)
+{
+	if (w)
+		;
+}
+
 void 		motion_events(t_env *w)
 {
-
+	if (w)
+		;
 }
 
 void		key_events(t_env *w)
@@ -28,7 +35,6 @@ void		key_events(t_env *w)
 		// if (key == )
 		// ft_putnbr(KEY);
 		// ft_putchar('\n');
-	}
 }
 
 void dance(t_env *w)
@@ -39,6 +45,9 @@ void dance(t_env *w)
 			key_events(w);
 		if (w->event.type == SDL_MOUSEMOTION)
 			motion_events(w);
+		if (w->event.type == SDL_MOUSEBUTTONDOWN)
+			button_events(w);
+		and_there_was_light(w); 
 	}
 
 }

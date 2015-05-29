@@ -24,7 +24,9 @@ SRC=		main.c        \
 			init_sdl.c 	   \
 			parse.c 		\
 			core.c 			 \
-			settings.c
+			key_events.c 	  \
+			mouse_events.c 	   \
+			raycasting.c
 			      
 SRCFIL=		$(addprefix $(SRCDIR),$(SRC))
 

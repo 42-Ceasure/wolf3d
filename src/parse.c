@@ -31,7 +31,6 @@ void 		load_map(char *av, t_env *world)
 			x++;
 		}
 		y++;
-		world->map[y][x + 1] = '\n';
 		free(l);
 	}
 	close(fd);
