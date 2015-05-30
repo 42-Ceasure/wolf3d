@@ -24,6 +24,7 @@ int init_sdl(t_env *w)
 										SDL_TEXTUREACCESS_STREAMING,
 										WIDTH,
 										HEIGHT);
+	// SDL_SetRelativeMouseMode(SDL_TRUE);
 	SDL_ShowCursor(SDL_DISABLE);
 	return (0);
 }

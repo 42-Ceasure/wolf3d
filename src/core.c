@@ -29,8 +29,8 @@ void 		motion_events(t_env *w)
 	if (MOTION.xrel > 0)
 	{
 		turn_right(w);
-		MOTION.x = WIDTH/2;
-		MOTION.y = HEIGHT/2;
+		MOTION.xrel = WIDTH/2;
+		MOTION.yrel = HEIGHT/2;
 	}
 }
 
@@ -81,7 +81,7 @@ void init_player(t_env *w)
 	w->dirx = -1;
 	w->diry = 0;
 	w->planx = 0;
-	w->plany = 0.66;
+	w->plany = 0.91;
 	w->time = 0;
 	w->otime = 0;
 	w->wscr = WIDTH;

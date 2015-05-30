@@ -19,10 +19,10 @@ void turn_right(t_env *w)
 
 	tmpx = w->dirx;
 	tmpp = w->planx;
-	w->dirx = w->dirx * cos(-M_PI/90) - w->diry * sin(-M_PI/90);
-	w->diry = tmpx * sin(-M_PI/90) + w->diry * cos(-M_PI/90);
-	w->planx = w->planx * cos(-M_PI/90) - w->plany * sin(-M_PI/90);
-	w->plany = tmpp * sin(-M_PI/90) + w->plany * cos(-M_PI/90);
+	w->dirx = w->dirx * cos(-ROT) - w->diry * sin(-ROT);
+	w->diry = tmpx * sin(-ROT) + w->diry * cos(-ROT);
+	w->planx = w->planx * cos(-ROT) - w->plany * sin(-ROT);
+	w->plany = tmpp * sin(-ROT) + w->plany * cos(-ROT);
 }
 
 void turn_left(t_env *w)
@@ -32,10 +32,10 @@ void turn_left(t_env *w)
 
 	tmpx = w->dirx;
 	tmpp = w->planx;
-	w->dirx = w->dirx * cos(M_PI/90) - w->diry * sin(M_PI/90);
-	w->diry = tmpx * sin(M_PI/90) + w->diry * cos(M_PI/90);
-	w->planx = w->planx * cos(M_PI/90) - w->plany * sin(M_PI/90);
-	w->plany = tmpp * sin(M_PI/90) + w->plany * cos(M_PI/90);
+	w->dirx = w->dirx * cos(ROT) - w->diry * sin(ROT);
+	w->diry = tmpx * sin(ROT) + w->diry * cos(ROT);
+	w->planx = w->planx * cos(ROT) - w->plany * sin(ROT);
+	w->plany = tmpp * sin(ROT) + w->plany * cos(ROT);
 }
 
 void mv_right(t_env *w)
