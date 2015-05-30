@@ -12,102 +12,110 @@
 
 #include "../lib/wolf3d.h"
 
-void 		and_there_was_light(t_env *w)
+void trace(int x, int y1, int y2, t_env *w)
 {
-	int 	x;
-	double 	camerax; 
-	double 	rayposx;
-	double 	rayposy;
-	double 	raydirx;
-	double 	raydiry;
-	
-	int 	mapx;
-	int 	mapy;
-	double 	sdstx;		// side dist x;
-	double 	sdsty;		// side dist y;
-	double 	ddstx;		// delta dist x;
-	double 	ddsty;		// delta dist y;
-	double 	pwalldst;	// perpendiculaire wall distance, to lenght of ray;
-	int 	stepx;
-	int 	stepy;
-	int 	hit;
-	int		side;
+	SDL_SetRenderDrawColor(w->rdr, 255, 0, 0, 100);
+	SDL_RenderDrawLine(w->rdr, x, y1, x, y2); 
+}
 
-	int 	lheight;
-	int 	drawstart;
-	int 	drawend;
-
-	x = 0;
-	while (x < w->wscr)
+void 		and_there_was_light(t_env *w, t_ray *r)
+{
+	r->x = 0;
+	while (r->x < w->wscr)
 	{
-		camerax = 2 * x / (double)w->wscr - 1;
-		rayposx = w->posx;
-		rayposy = w->posy;
-		raydirx = w->dirx + w->planx * camerax;
-		raydiry = w->diry + w->plany * camerax;
-		mapx = (int)rayposx;
-		mapy = (int)rayposy;
-		ddstx = sqrt(1 + (raydiry * raydiry) / (raydirx * raydirx));
-		ddsty = sqrt(1 + (raydirx * raydirx) / (raydiry * raydiry));
-		hit = 0;
-		if (raydirx < 0)
+		r->camerax = 2 * r->x / (double)w->wscr - 1;
+		r->rayposx = w->posx;
+		r->rayposy = w->posy;
+		r->raydirx = (w->dirx) + (w->planx) * (r->camerax);
+		r->raydiry = (w->diry) + (w->plany) * (r->camerax);
+		r->mapx = (int)(r->rayposx);
+		r->mapy = (int)(r->rayposy);
+		r->ddstx = sqrt(1 + (r->raydiry * r->raydiry) / (r->raydirx * r->raydirx));
+		r->ddsty = sqrt(1 + (r->raydirx * r->raydirx) / (r->raydiry * r->raydiry));
+		r->hit = 0;
+		if (r->raydirx < 0)
 		{
-			stepx = -1;
-			sdstx = (rayposx - mapx) * ddstx;
+			r->stepx = -1;
+			r->sdstx = (r->rayposx - r->mapx) * r->ddstx;
 		}
 		else
 		{
-			stepx = 1;
-			sdstx = (mapx + 1.0 - rayposx) * ddstx;
+			r->stepx = 1;
+			r->sdstx = (r->mapx + 1.0 - r->rayposx) * r->ddstx;
 		}
-		if (raydiry < 0)
+		if (r->raydiry < 0)
 		{
-			stepy = -1;
-			sdsty = (rayposy - mapy) * ddsty;
+			r->stepy = -1;
+			r->sdsty = (r->rayposy - r->mapy) * r->ddsty;
 		}
 		else
 		{
-			stepy = 1;
-			sdsty = (mapy + 1.0 - rayposy) * ddsty;
+			r->stepy = 1;
+			r->sdsty = (r->mapy + 1.0 - r->rayposy) * r->ddsty;
 		}
-		while (hit == 0)
+		while (r->hit == 0)
 		{
-			if (sdstx < sdsty)
+			if (r->sdstx < r->sdsty)
 			{
-				sdstx += ddstx;
-				mapx += stepx;
-				side = 0;
+				r->sdstx += r->ddstx;
+				r->mapx += r->stepx;
+				r->side = 0;
 			}
 			else
 			{
-				sdsty += ddsty;
-				mapy += stepy;
-				side = 1;
+				r->sdsty += r->ddsty;
+				r->mapy += r->stepy;
+				r->side = 1;
 			}
-			if (w->map[mapx][mapy] > 0)
-				hit = 1;
+			if (w->map[r->mapx][r->mapy] > 0)
+				r->hit = 1;
 		}
-		if (side == 0)
-			pwalldst = fabs((mapx - rayposx + (1 - stepx) / 2) / raydirx);
+		if (r->side == 0)
+			r->pwalldst = fabs((r->mapx - r->rayposx + (1 - r->stepx) / 2) / r->raydirx);
 		else
-			pwalldst = fabs((mapy - rayposy + (1 - stepy) / 2) / raydiry);
-		lheight = abs((int)(w->hscr / pwalldst));
-		drawstart = -lheight / 2 + w->hscr / 2;
-		if (drawstart < 0)
-			drawstart = 0;
-		drawend = lheight / 2 + w->hscr / 2;
-		if (drawend >= w->hscr)
-			drawend = w->hscr - 1;
-		// ColorRGB color;
-		// switch(w->map[mapx][mapy])
-		// {
-		// case 1:  color = RGB_Red;  break; //red
-		// case 2:  color = RGB_Green;  break; //green
-		// case 3:  color = RGB_Blue;   break; //blue
-		// case 4:  color = RGB_White;  break; //white
-		// default: color = RGB_Yellow; break; //yellow
-		// }
-		// if (side == 1) {color = color / 2;}
-		// verLine(x, drawStart, drawEnd, color);
+			r->pwalldst = fabs((r->mapy - r->rayposy + (1 - r->stepy) / 2) / r->raydiry);
+		r->lheight = abs((int)(w->hscr / r->pwalldst));
+		r->drawstart = -(r->lheight) / 2 + w->hscr / 2;
+		if (r->drawstart < 0)
+			r->drawstart = 0;
+		r->drawend = r->lheight / 2 + w->hscr / 2;
+		if (r->drawend >= w->hscr)
+			r->drawend = w->hscr - 1;
+			switch(w->map[r->mapx][r->mapy])
+			{
+			case 1:
+			r->c_r = 0xFF;
+			r->c_g = 0x00;
+			r->c_b = 0x00;
+			break;
+		case 2:
+			r->c_r = 0x00;
+			r->c_g = 0xFF;
+			r->c_b = 0x00;
+			break;
+		case 3:
+			r->c_r = 0x00;
+			r->c_g = 0x00;
+			r->c_b = 0xFF;
+			break;
+		case 4:
+			r->c_r = 0xFF;
+			r->c_g = 0xFF;
+			r->c_b = 0xFF;
+			break;
+		default:
+			r->c_r = 0xFF;
+			r->c_g = 0xFF;
+			r->c_b = 0x00;
+			break;
+			}
+			if (r->side == 1)
+		{
+			r->c_r /= 2;
+			r->c_g /= 2;
+			r->c_b /= 2;
+		}
+		trace(r->x, r->drawstart, r->drawend, w);
+		r->x++;
 	}
 }

@@ -27,7 +27,7 @@ void 		load_map(char *av, t_env *world)
 		while (l[x])
 		{
 
-			world->map[y][x] = l[x];
+			world->map[y][x] = l[x] - 48;
 			x++;
 		}
 		y++;

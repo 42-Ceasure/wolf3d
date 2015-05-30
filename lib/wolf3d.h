@@ -28,14 +28,49 @@
 # define MYSIZE world->mapys
 # define KEY w->event.key.keysym.sym
 
+typedef struct 					s_ray
+{
+	int 	x;
+	double 	camerax; 
+	double 	rayposx;
+	double 	rayposy;
+	double 	raydirx;
+	double 	raydiry;
+	
+	int 	mapx;
+	int 	mapy;
+	double 	sdstx;		// side dist x;
+	double 	sdsty;		// side dist y;
+	double 	ddstx;		// delta dist x;
+	double 	ddsty;		// delta dist y;
+	double 	pwalldst;	// perpendiculaire wall distance, to lenght of ray;
+	int 	stepx;
+	int 	stepy;
+	int 	hit;
+	int		side;
+
+	int 	lheight;
+	int 	drawstart;
+	int 	drawend;
+
+	Uint8 	c_r;
+	Uint8 	c_g;
+	Uint8 	c_b;
+	Uint8 	c_a;
+}								t_ray;
+
 typedef struct					s_env
 {
 	/*   SDL   */
-	SDL_Event		event;
+	SDL_Window		*win;
 	SDL_Renderer	*rdr;
 	SDL_Texture		*txtr;
-	SDL_Window		*win;
+	SDL_Event		event;
+	// SDL_PixelFormat *fmt;
+	// void 			*pixel;
+	// int 			pitch;
 	Uint32			*pix;
+	Uint32 			colorSDL;
 	/*   MAP   */
 	int 			**map;
 	int 			mapxs;
@@ -51,7 +86,7 @@ typedef struct					s_env
 	int 			wscr;
 	int 			hscr;
 	/*   FPS   */
-	double 			ptime;
+	double 			time;
 	double 			otime;
 }								t_env;
 
@@ -60,6 +95,6 @@ int 	parse(char *av, t_env *world);
 void 	dance(t_env *w);
 void 	exit_game(t_env *w);
 void 	init_player(t_env *w);
-void 	and_there_was_light(t_env *w);
+void 	and_there_was_light(t_env *w, t_ray *r);
 
 #endif

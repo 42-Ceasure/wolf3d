@@ -39,6 +39,9 @@ void		key_events(t_env *w)
 
 void dance(t_env *w)
 {
+	t_ray 	*r;
+
+	r = (t_ray *)malloc(sizeof(t_ray));
 	while (SDL_PollEvent(&w->event) != -1)
 	{
 		if (w->event.type == SDL_KEYDOWN)
@@ -47,20 +50,28 @@ void dance(t_env *w)
 			motion_events(w);
 		if (w->event.type == SDL_MOUSEBUTTONDOWN)
 			button_events(w);
-		and_there_was_light(w); 
+		and_there_was_light(w, r);
+		SDL_RenderPresent(w->rdr);
+		// SDL_SetRenderDrawColor(w->rdr, 0, 0, 0, 255);
+		// SDL_RenderClear(w->rdr);
+		// write(1, "ok", 2);
+		// SDL_UpdateTexture(w->txtr, NULL, w->pix, WIDTH * sizeof(Uint32));
+		// SDL_RenderCopy(w->rdr, w->txtr, NULL, NULL);
+
+		SDL_Delay(16);
 	}
 
 }
 
 void init_player(t_env *w)
 {
-	w->posx = 2;
-	w->posy = 2;
+	w->posx = 22;
+	w->posy = 12;
 	w->dirx = -1;
 	w->diry = 0;
 	w->planx = 0;
 	w->plany = 0.66;
-	w->ptime = 0;
+	w->time = 0;
 	w->otime = 0;
 	w->wscr = WIDTH;
 	w->hscr = HEIGHT;
