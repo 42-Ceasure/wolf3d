@@ -94,6 +94,12 @@ int 	init_sdl(t_env *w);
 int 	parse(char *av, t_env *world);
 void 	dance(t_env *w);
 void 	exit_game(t_env *w);
+void 	mv_forward(t_env *w);
+void 	mv_backward(t_env *w);
+void 	mv_left(t_env *w);
+void 	mv_right(t_env *w);
+void 	turn_left(t_env *w);
+void 	turn_right(t_env *w);
 void 	init_player(t_env *w);
 void 	and_there_was_light(t_env *w, t_ray *r);
 

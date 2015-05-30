@@ -26,15 +26,22 @@ void 		motion_events(t_env *w)
 
 void		key_events(t_env *w)
 {
-		if (KEY == 27)
-			exit_game(w);
-		// if (key == 119)
-		// 	mv_forward(w);
-		// if (key == 115);
-		// 	mv_backward(w);
-		// if (key == )
-		// ft_putnbr(KEY);
-		// ft_putchar('\n');
+	if (KEY == 27)
+		exit_game(w);
+	if (KEY == 119)
+		mv_forward(w);
+	if (KEY == 115)
+		mv_backward(w);
+	if (KEY == 97)
+		mv_left(w);
+	if (KEY == 100)
+		mv_right(w);
+	if (KEY == 113)
+		turn_left(w);
+	if (KEY == 101)
+		turn_right(w);
+		ft_putnbr(KEY);
+		ft_putchar('\n');
 }
 
 void dance(t_env *w)
@@ -42,6 +49,8 @@ void dance(t_env *w)
 	t_ray 	*r;
 
 	r = (t_ray *)malloc(sizeof(t_ray));
+	while(1)
+	{
 	while (SDL_PollEvent(&w->event) != -1)
 	{
 		if (w->event.type == SDL_KEYDOWN)
@@ -51,16 +60,8 @@ void dance(t_env *w)
 		if (w->event.type == SDL_MOUSEBUTTONDOWN)
 			button_events(w);
 		and_there_was_light(w, r);
-		SDL_RenderPresent(w->rdr);
-		// SDL_SetRenderDrawColor(w->rdr, 0, 0, 0, 255);
-		// SDL_RenderClear(w->rdr);
-		// write(1, "ok", 2);
-		// SDL_UpdateTexture(w->txtr, NULL, w->pix, WIDTH * sizeof(Uint32));
-		// SDL_RenderCopy(w->rdr, w->txtr, NULL, NULL);
-
-		SDL_Delay(16);
 	}
-
+	}
 }
 
 void init_player(t_env *w)

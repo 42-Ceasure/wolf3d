@@ -118,4 +118,11 @@ void 		and_there_was_light(t_env *w, t_ray *r)
 		trace(r->x, r->drawstart, r->drawend, w);
 		r->x++;
 	}
+	// SDL_UpdateTexture(w->txtr, NULL, w->pix, WIDTH * sizeof(Uint32));
+	// SDL_RenderCopy(w->rdr, w->txtr, NULL, NULL);
+	SDL_RenderPresent(w->rdr);
+	SDL_Delay(16);
+	ft_bzero(w->pix, sizeof(Uint32) * WIDTH * HEIGHT);
+	SDL_SetRenderDrawColor(w->rdr, 255, 255, 255, 255);
+	SDL_RenderClear(w->rdr);
 }
