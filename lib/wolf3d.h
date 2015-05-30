@@ -27,6 +27,7 @@
 # define MXSIZE world->mapxs
 # define MYSIZE world->mapys
 # define KEY w->event.key.keysym.sym
+# define MOTION w->event.motion
 
 typedef struct 					s_ray
 {

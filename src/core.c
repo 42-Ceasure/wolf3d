@@ -20,8 +20,18 @@ void 		button_events(t_env *w)
 
 void 		motion_events(t_env *w)
 {
-	if (w)
-		;
+	if (MOTION.xrel < 0)
+	{
+		turn_left(w);
+		MOTION.x = WIDTH/2;
+		MOTION.y = HEIGHT/2;
+	}
+	if (MOTION.xrel > 0)
+	{
+		turn_right(w);
+		MOTION.x = WIDTH/2;
+		MOTION.y = HEIGHT/2;
+	}
 }
 
 void		key_events(t_env *w)
@@ -51,16 +61,16 @@ void dance(t_env *w)
 	r = (t_ray *)malloc(sizeof(t_ray));
 	while(1)
 	{
-	while (SDL_PollEvent(&w->event) != -1)
-	{
-		if (w->event.type == SDL_KEYDOWN)
-			key_events(w);
-		if (w->event.type == SDL_MOUSEMOTION)
-			motion_events(w);
-		if (w->event.type == SDL_MOUSEBUTTONDOWN)
-			button_events(w);
-		and_there_was_light(w, r);
-	}
+		while (SDL_PollEvent(&w->event))
+		{
+			if (w->event.type == SDL_KEYDOWN)
+				key_events(w);
+			if (w->event.type == SDL_MOUSEMOTION)
+				motion_events(w);
+			if (w->event.type == SDL_MOUSEBUTTONDOWN)
+				button_events(w);
+			and_there_was_light(w, r);
+		}
 	}
 }
 

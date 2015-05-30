@@ -12,10 +12,10 @@
 
 #include "../lib/wolf3d.h"
 
-void trace(int x, int y1, int y2, t_env *w)
+void trace(t_ray *r, int y1, int y2, t_env *w)
 {
-	SDL_SetRenderDrawColor(w->rdr, 255, 0, 0, 100);
-	SDL_RenderDrawLine(w->rdr, x, y1, x, y2); 
+	SDL_SetRenderDrawColor(w->rdr, r->c_r, r->c_g, r->c_b, 100);
+	SDL_RenderDrawLine(w->rdr, r->x, y1, r->x, y2); 
 }
 
 void 		and_there_was_light(t_env *w, t_ray *r)
@@ -81,33 +81,33 @@ void 		and_there_was_light(t_env *w, t_ray *r)
 		r->drawend = r->lheight / 2 + w->hscr / 2;
 		if (r->drawend >= w->hscr)
 			r->drawend = w->hscr - 1;
-			switch(w->map[r->mapx][r->mapy])
-			{
+		switch(w->map[r->mapx][r->mapy])
+		{
 			case 1:
-			r->c_r = 0xFF;
-			r->c_g = 0x00;
-			r->c_b = 0x00;
-			break;
-		case 2:
-			r->c_r = 0x00;
-			r->c_g = 0xFF;
-			r->c_b = 0x00;
-			break;
-		case 3:
-			r->c_r = 0x00;
-			r->c_g = 0x00;
-			r->c_b = 0xFF;
-			break;
-		case 4:
-			r->c_r = 0xFF;
-			r->c_g = 0xFF;
-			r->c_b = 0xFF;
-			break;
-		default:
-			r->c_r = 0xFF;
-			r->c_g = 0xFF;
-			r->c_b = 0x00;
-			break;
+				r->c_r = 0xFF;
+				r->c_g = 0x00;
+				r->c_b = 0x00;
+				break;
+			case 2:
+				r->c_r = 0x00;
+				r->c_g = 0xFF;
+				r->c_b = 0x00;
+				break;
+			case 3:
+				r->c_r = 0x00;
+				r->c_g = 0x00;
+				r->c_b = 0xFF;
+				break;
+			case 4:
+				r->c_r = 0xFF;
+				r->c_g = 0xFF;
+				r->c_b = 0xFF;
+				break;
+			default:
+				r->c_r = 0xFF;
+				r->c_g = 0xFF;
+				r->c_b = 0x00;
+				break;
 			}
 			if (r->side == 1)
 		{
@@ -115,14 +115,16 @@ void 		and_there_was_light(t_env *w, t_ray *r)
 			r->c_g /= 2;
 			r->c_b /= 2;
 		}
-		trace(r->x, r->drawstart, r->drawend, w);
+		trace(r, r->drawstart, r->drawend, w);
 		r->x++;
 	}
+	// w->otime = w->time;
+	// time = 
 	// SDL_UpdateTexture(w->txtr, NULL, w->pix, WIDTH * sizeof(Uint32));
 	// SDL_RenderCopy(w->rdr, w->txtr, NULL, NULL);
 	SDL_RenderPresent(w->rdr);
-	SDL_Delay(16);
+	SDL_Delay(8);
 	ft_bzero(w->pix, sizeof(Uint32) * WIDTH * HEIGHT);
-	SDL_SetRenderDrawColor(w->rdr, 255, 255, 255, 255);
+	SDL_SetRenderDrawColor(w->rdr, 0, 0, 0, 255);
 	SDL_RenderClear(w->rdr);
 }
