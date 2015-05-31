@@ -6,7 +6,7 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 17:12:35 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/06/01 01:04:56 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/01 01:46:19 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void trace(t_ray *r, int y1, int y2, t_env *w)
 	int y;
 
 	y = 0;
-	while (y < y1 && y < 200)
+	while (y < y1 && y < 150)
 	{
-		w->pix[r->x + (y * WIDTH)] = color((169 - y * 169 / 200), (208 - y * 208 / 200), 255);
+		w->pix[r->x + (y * WIDTH)] = color((169 - y * 169/150), (208 - y * 81/150), 255);
 		y++; 							//   0  127  254
 	}
 	while (y < y1)
@@ -37,10 +37,15 @@ void trace(t_ray *r, int y1, int y2, t_env *w)
 		w->pix[r->x + (y * WIDTH)] = color(r->c_r, r->c_g, r->c_b);
 		y++;
 	}
-	while (y < HEIGHT)
+	while (y > y2 && y < 350)
 	{
-		w->pix[r->x + (y * WIDTH)] = color(58, 157, 35);
-		y++;
+		w->pix[r->x + (y * WIDTH)] = color(159 - y * 101/350, 232 - y * 75/350, 85 - y * 50/350);// 103-159-90-vertmousse 159-232-85-vertannis
+		y++; 							// 58, 157, 35
+	}
+	while (y > y2 && y < WIDTH)
+	{
+		w->pix[r->x + (y * WIDTH)] = color(58, 157, 35);// 103-159-90-vertmousse 159-232-85-vertannis
+		y++; 							// 58, 157, 35
 	}
 }
 
