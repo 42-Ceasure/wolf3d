@@ -19,10 +19,10 @@ void turn_right(t_env *w)
 
 	tmpx = w->dirx;
 	tmpp = w->planx;
-	w->dirx = w->dirx * cos(-ROT) - w->diry * sin(-ROT);
-	w->diry = tmpx * sin(-ROT) + w->diry * cos(-ROT);
-	w->planx = w->planx * cos(-ROT) - w->plany * sin(-ROT);
-	w->plany = tmpp * sin(-ROT) + w->plany * cos(-ROT);
+	w->dirx = w->dirx * cos(-PROT) - w->diry * sin(-PROT);
+	w->diry = tmpx * sin(-PROT) + w->diry * cos(-PROT);
+	w->planx = w->planx * cos(-PROT) - w->plany * sin(-PROT);
+	w->plany = tmpp * sin(-PROT) + w->plany * cos(-PROT);
 }
 
 void turn_left(t_env *w)
@@ -32,10 +32,10 @@ void turn_left(t_env *w)
 
 	tmpx = w->dirx;
 	tmpp = w->planx;
-	w->dirx = w->dirx * cos(ROT) - w->diry * sin(ROT);
-	w->diry = tmpx * sin(ROT) + w->diry * cos(ROT);
-	w->planx = w->planx * cos(ROT) - w->plany * sin(ROT);
-	w->plany = tmpp * sin(ROT) + w->plany * cos(ROT);
+	w->dirx = w->dirx * cos(PROT) - w->diry * sin(PROT);
+	w->diry = tmpx * sin(PROT) + w->diry * cos(PROT);
+	w->planx = w->planx * cos(PROT) - w->plany * sin(PROT);
+	w->plany = tmpp * sin(PROT) + w->plany * cos(PROT);
 }
 
 void mv_right(t_env *w)
@@ -43,12 +43,12 @@ void mv_right(t_env *w)
 	int x;
 	int y;
 
-	x = (int)(w->posx + w->diry * 0.3);
-	y = (int)(w->posy + w->dirx * 0.3);
+	x = (int)(w->posx + w->diry * PMSP);
+	y = (int)(w->posy + w->dirx * PMSP);
 	if (w->map[x][(int)w->posy] == 0)
-		w->posx += w->diry * 0.3;
+		w->posx += w->diry * PMSP;
 	if (w->map[(int)w->posx][y] == 0)
-		w->posy -= w->dirx * 0.3;
+		w->posy -= w->dirx * PMSP;
 }
 
 void mv_left(t_env *w)
@@ -56,12 +56,12 @@ void mv_left(t_env *w)
 	int x;
 	int y;
 
-	x = (int)(w->posx - w->diry * 0.3);
-	y = (int)(w->posy - w->dirx * 0.3);
+	x = (int)(w->posx - w->diry * PMSP);
+	y = (int)(w->posy - w->dirx * PMSP);
 	if (w->map[(int)w->posx][y] == 0)
-		w->posx -= w->diry * 0.3;
+		w->posx -= w->diry * PMSP;
 	if (w->map[x][(int)w->posy] == 0)
-		w->posy += w->dirx * 0.3;
+		w->posy += w->dirx * PMSP;
 }
 
 void mv_backward(t_env *w)
@@ -69,12 +69,12 @@ void mv_backward(t_env *w)
 	int x;
 	int y;
 
-	x = (int)(w->posx - w->dirx * 0.3);
-	y = (int)(w->posy - w->diry * 0.3);
+	x = (int)(w->posx - w->dirx * PMSP);
+	y = (int)(w->posy - w->diry * PMSP);
 	if (w->map[x][(int)w->posy] == 0)
-		w->posx -= w->dirx * 0.3;
+		w->posx -= w->dirx * PMSP;
 	if (w->map[(int)w->posx][y] == 0)
-		w->posy -= w->diry * 0.3;
+		w->posy -= w->diry * PMSP;
 }
 
 void mv_forward(t_env *w)
@@ -82,12 +82,12 @@ void mv_forward(t_env *w)
 	int x;
 	int y;
 
-	x = (int)(w->posx + w->dirx * 0.3);
-	y = (int)(w->posy + w->diry * 0.3);
+	x = (int)(w->posx + w->dirx * PMSP);
+	y = (int)(w->posy + w->diry * PMSP);
 	if (w->map[x][(int)w->posy] == 0)
-		w->posx += w->dirx * 0.3;
+		w->posx += w->dirx * PMSP;
 	if (w->map[(int)w->posx][y] == 0)
-		w->posy += w->diry * 0.3;
+		w->posy += w->diry * PMSP;
 }
 
 void exit_game(t_env *w)

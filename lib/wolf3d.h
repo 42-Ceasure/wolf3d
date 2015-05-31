@@ -29,6 +29,9 @@
 # define KEY w->event.key.keysym.sym
 # define MOTION w->event.motion
 # define ROT M_PI/45
+# define MSP 0.25
+# define PROT w->rotspeed
+# define PMSP w->movspeed
 
 typedef struct 					s_ray
 {

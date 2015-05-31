@@ -52,22 +52,24 @@ void		key_events(t_env *w)
 		turn_right(w);
 }
 
-double hipressfps(t_env *w)
+void hipressfps(t_env *w)
 {
 	double fps;
 
 	w->otime = w->time;
 	w->time = SDL_GetTicks();
 	fps = (w->time - w->otime) / 1000.0;
-	printf("%lf\n", (1.0 / fps));
-	return (fps);
+	w->movspeed = fps * 4.0;
+	w->rotspeed = fps * 1.6;
+	// if (1.0 / fps > 30)
+		SDL_Delay(20);
+	// printf("%lf\n", (1.0 / fps));
 }
 
 void dance(t_env *w, t_ray *r)
 {
 	while (1)
 	{
-		SDL_Delay(20);
 		while (SDL_PollEvent(&w->event))
 		{
 			if (w->event.type == SDL_KEYDOWN)
