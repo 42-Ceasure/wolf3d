@@ -123,11 +123,4 @@ void 		and_there_was_light(t_env *w, t_ray *r)
 		trace(r, r->drawstart, r->drawend, w);
 		r->x++;
 	}
-	// w->otime = w->time;
-	// time = 
-	// SDL_UpdateTexture(w->txtr, NULL, w->pix, WIDTH * sizeof(Uint32));
-	// SDL_RenderCopy(w->rdr, w->txtr, NULL, NULL);
-	// SDL_RenderPresent(w->rdr);
-	// SDL_SetRenderDrawColor(w->rdr, 0, 0, 0, 255);
-	// SDL_RenderClear(w->rdr);
 }
