@@ -50,9 +50,6 @@ void		key_events(t_env *w)
 		turn_left(w);
 	if (w->inkeys[SDL_SCANCODE_RIGHT])
 		turn_right(w);
-		// ft_putnbr(KEY);
-		// ft_putchar('\n');
-
 }
 
 double hipressfps(t_env *w)
@@ -87,36 +84,4 @@ void dance(t_env *w, t_ray *r)
 		w->inkeys = SDL_GetKeyboardState(NULL);
 		key_events(w);
 	}
-
-
-
-// double frametime;//////////////////////////////////////////////////////////////
-// unsigned int tps;//////////////////////////////////////////////////////////////
-// unsigned int otp;//////////////////////////////////////////////////////////////
-// 																			 // 
-// 	while(1)																 //
-// 	{																		 //
-// tps = SDL_GetTicks();//////////////////////////////////////////////////////////
-// 		// SDL_Delay(16);													 //
-// 		while (SDL_PollEvent(&w->event))									 //
-// 		{																	 //
-// 			if (w->event.type == SDL_KEYDOWN)								 //
-// 				key_events(w);												 //
-// 			if (w->event.type == SDL_MOUSEMOTION)							 //
-// 				motion_events(w);											 //   /!\ travaux /!\
-// 			if (w->event.type == SDL_MOUSEBUTTONDOWN)						 //
-// 				button_events(w);											 //
-// 			and_there_was_light(w, r);										 //
-// dif = (SDL_GetTicks() - tps);//////////////////////////////////////////////////
-// if (otp < 20)//////////////////////////////////////////////////////////////////
-// SDL_Delay(20 - otp);///////////////////////////////////////////////////////////
-// 		}																	 //
-// w->otime = w->time;////////////////////////////////////////////////////////////
-// w->time = SDL_GetTicks();//////////////////////////////////////////////////////
-// frametime = (w->time - w->otime) / 1000.0;/////////////////////////////////////
-// printf("%lf\n", (1.0 / frametime));////////////////////////////////////////////
-// w->movspeed = frametime * 5.0;/////////////////////////////////////////////////
-// w->rotspeed = frametime * 3.0;/////////////////////////////////////////////////
-// 	}
 }
-
