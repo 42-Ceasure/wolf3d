@@ -50,17 +50,22 @@ void		key_events(t_env *w)
 		turn_left(w);
 	if (KEY == 101)
 		turn_right(w);
-		ft_putnbr(KEY);
-		ft_putchar('\n');
+		// ft_putnbr(KEY);
+		// ft_putchar('\n');
 }
 
 void dance(t_env *w)
 {
+double frametime;
+// unsigned int tps;
+// unsigned int otp;
 	t_ray 	*r;
 
 	r = (t_ray *)malloc(sizeof(t_ray));
 	while(1)
 	{
+// tps = SDL_GetTicks();
+		SDL_Delay(16);
 		while (SDL_PollEvent(&w->event))
 		{
 			if (w->event.type == SDL_KEYDOWN)
@@ -70,20 +75,16 @@ void dance(t_env *w)
 			if (w->event.type == SDL_MOUSEBUTTONDOWN)
 				button_events(w);
 			and_there_was_light(w, r);
+// dif = (SDL_GetTicks() - tps);
+			// if (otp < 20)
+			// SDL_Delay(20 - opt);
 		}
+w->otime = w->time;
+w->time = SDL_GetTicks();
+frametime = (w->time - w->otime) / 1000.0;
+printf("%lf\n", (1.0 / frametime));
+w->movspeed = frametime * 5.0;
+w->rotspeed = frametime * 3.0;
 	}
 }
 
-void init_player(t_env *w)
-{
-	w->posx = 22;
-	w->posy = 12;
-	w->dirx = -1;
-	w->diry = 0;
-	w->planx = 0;
-	w->plany = 0.91;
-	w->time = 0;
-	w->otime = 0;
-	w->wscr = WIDTH;
-	w->hscr = HEIGHT;
-}

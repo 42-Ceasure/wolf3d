@@ -24,7 +24,21 @@ int init_sdl(t_env *w)
 										SDL_TEXTUREACCESS_STREAMING,
 										WIDTH,
 										HEIGHT);
-	// SDL_SetRelativeMouseMode(SDL_TRUE);
+	SDL_SetRelativeMouseMode(SDL_TRUE);
 	SDL_ShowCursor(SDL_DISABLE);
 	return (0);
+}
+
+void init_player(t_env *w)
+{
+	w->posx = 22;
+	w->posy = 12;
+	w->dirx = -1;
+	w->diry = 0;
+	w->planx = 0;
+	w->plany = 0.66;
+	w->time = 0;
+	w->otime = 0;
+	w->wscr = WIDTH;
+	w->hscr = HEIGHT;
 }

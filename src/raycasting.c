@@ -14,8 +14,12 @@
 
 void trace(t_ray *r, int y1, int y2, t_env *w)
 {
-	SDL_SetRenderDrawColor(w->rdr, r->c_r, r->c_g, r->c_b, 100);
-	SDL_RenderDrawLine(w->rdr, r->x, y1, r->x, y2); 
+	SDL_SetRenderDrawColor(w->rdr, 116, 208, 241, 255);
+	SDL_RenderDrawLine(w->rdr, r->x, 0, r->x, y1);
+	SDL_SetRenderDrawColor(w->rdr, r->c_r, r->c_g, r->c_b, 200);
+	SDL_RenderDrawLine(w->rdr, r->x, y1, r->x, y2);
+	SDL_SetRenderDrawColor(w->rdr, 58, 157, 35, 200);
+	SDL_RenderDrawLine(w->rdr, r->x, y2, r->x, 599);
 }
 
 void 		and_there_was_light(t_env *w, t_ray *r)
@@ -85,8 +89,8 @@ void 		and_there_was_light(t_env *w, t_ray *r)
 		{
 			case 1:
 				r->c_r = 0xFF;
-				r->c_g = 0x00;
-				r->c_b = 0x00;
+				r->c_g = 0xFF;
+				r->c_b = 0xFF;
 				break;
 			case 2:
 				r->c_r = 0x00;
@@ -99,9 +103,10 @@ void 		and_there_was_light(t_env *w, t_ray *r)
 				r->c_b = 0xFF;
 				break;
 			case 4:
+				
 				r->c_r = 0xFF;
-				r->c_g = 0xFF;
-				r->c_b = 0xFF;
+				r->c_g = 0x00;
+				r->c_b = 0x00;
 				break;
 			default:
 				r->c_r = 0xFF;
@@ -123,8 +128,6 @@ void 		and_there_was_light(t_env *w, t_ray *r)
 	// SDL_UpdateTexture(w->txtr, NULL, w->pix, WIDTH * sizeof(Uint32));
 	// SDL_RenderCopy(w->rdr, w->txtr, NULL, NULL);
 	SDL_RenderPresent(w->rdr);
-	SDL_Delay(8);
-	ft_bzero(w->pix, sizeof(Uint32) * WIDTH * HEIGHT);
-	SDL_SetRenderDrawColor(w->rdr, 0, 0, 0, 255);
+	// SDL_SetRenderDrawColor(w->rdr, 0, 0, 0, 255);
 	SDL_RenderClear(w->rdr);
 }

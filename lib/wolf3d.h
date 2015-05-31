@@ -22,13 +22,13 @@
 #include "SDL2.framework/Headers/SDL.h"
 
 # define NAME "wolf3d"
-# define WIDTH 640
-# define HEIGHT 400
+# define WIDTH 800
+# define HEIGHT 600
 # define MXSIZE world->mapxs
 # define MYSIZE world->mapys
 # define KEY w->event.key.keysym.sym
 # define MOTION w->event.motion
-# define ROT M_PI/45
+# define ROT M_PI/90
 
 typedef struct 					s_ray
 {
@@ -84,6 +84,8 @@ typedef struct					s_env
 	double 			diry;
 	double 			planx;
 	double 			plany;
+	double movspeed;
+	double rotspeed;
 	/* SCREEN  */
 	int 			wscr;
 	int 			hscr;
