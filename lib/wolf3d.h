@@ -6,7 +6,7 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 04:42:57 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/02/23 07:03:49 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/05/31 23:13:19 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define MSP 0.25
 # define PROT w->rotspeed
 # define PMSP w->movspeed
-# define FOV 0.91
+# define FOV 0.85
 
 typedef struct 					s_ray
 {

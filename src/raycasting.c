@@ -6,20 +6,42 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 17:12:35 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/05/19 17:20:42 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/01 01:04:56 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
 
+Uint32 color(int r, int g, int b)
+{ 
+	return (((((r << 8) + g) << 8)+ b));
+}
+
 void trace(t_ray *r, int y1, int y2, t_env *w)
 {
-	SDL_SetRenderDrawColor(w->rdr, 116, 208, 241, 255);
-	SDL_RenderDrawLine(w->rdr, r->x, 0, r->x, y1);
-	SDL_SetRenderDrawColor(w->rdr, r->c_r, r->c_g, r->c_b, 200);
-	SDL_RenderDrawLine(w->rdr, r->x, y1, r->x, y2);
-	SDL_SetRenderDrawColor(w->rdr, 58, 157, 35, 200);
-	SDL_RenderDrawLine(w->rdr, r->x, y2, r->x, HEIGHT - 1);
+	int y;
+
+	y = 0;
+	while (y < y1 && y < 200)
+	{
+		w->pix[r->x + (y * WIDTH)] = color((169 - y * 169 / 200), (208 - y * 208 / 200), 255);
+		y++; 							//   0  127  254
+	}
+	while (y < y1)
+	{
+		w->pix[r->x + (y * WIDTH)] = color(0, 127, 255);
+		y++; 							//   0  127  254
+	}
+	while (y <= y2)
+	{
+		w->pix[r->x + (y * WIDTH)] = color(r->c_r, r->c_g, r->c_b);
+		y++;
+	}
+	while (y < HEIGHT)
+	{
+		w->pix[r->x + (y * WIDTH)] = color(58, 157, 35);
+		y++;
+	}
 }
 
 void 		and_there_was_light(t_env *w, t_ray *r)
@@ -88,29 +110,29 @@ void 		and_there_was_light(t_env *w, t_ray *r)
 		switch(w->map[r->mapx][r->mapy])
 		{
 			case 1:
-				r->c_r = 0xFF;
-				r->c_g = 0xFF;
-				r->c_b = 0xFF;
+				r->c_r = 0xBB;
+				r->c_g = 0xAE;
+				r->c_b = 0x98;
 				break;
 			case 2:
-				r->c_r = 0x00;
-				r->c_g = 0xFF;
-				r->c_b = 0x00;
+				r->c_r = 0x5B;
+				r->c_g = 0x3C;
+				r->c_b = 0x11;
 				break;
 			case 3:
-				r->c_r = 0x00;
-				r->c_g = 0x00;
-				r->c_b = 0xFF;
+				r->c_r = 0x09;
+				r->c_g = 0x52;
+				r->c_b = 0x28;
 				break;
 			case 4:
 				
-				r->c_r = 0xFF;
-				r->c_g = 0x00;
-				r->c_b = 0x00;
+				r->c_r = 0x84;
+				r->c_g = 0x2E;
+				r->c_b = 0x1B;
 				break;
 			default:
-				r->c_r = 0xFF;
-				r->c_g = 0xFF;
+				r->c_r = 0xC6;
+				r->c_g = 0x08;
 				r->c_b = 0x00;
 				break;
 			}

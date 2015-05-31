@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_sdl.c                                         :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/27 16:03:12 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/05/27 17:20:42 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/05/31 22:09:33 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ int init_sdl(t_env *w)
 									WIDTH,
 									HEIGHT,
 									SDL_WINDOW_BORDERLESS);
-	w->rdr = SDL_CreateRenderer(w->win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	// SDL_RenderSetLogicalSize(w->rdr, WIDTH, HEIGHT);
-	// w->pix = (Uint32 *)malloc(sizeof(Uint32) * WIDTH * HEIGHT);
-	// w->txtr = SDL_CreateTexture(w->rdr, SDL_PIXELFORMAT_ARGB8888,
-										// SDL_TEXTUREACCESS_STREAMING,
-										// WIDTH,
-										// HEIGHT);
+	w->rdr = SDL_CreateRenderer(w->win, -1, SDL_RENDERER_ACCELERATED | 
+											SDL_RENDERER_PRESENTVSYNC);
+	w->pix = (Uint32 *)malloc(sizeof(Uint32) * WIDTH * HEIGHT);
+	w->txtr = SDL_CreateTexture(w->rdr, SDL_PIXELFORMAT_ARGB8888,
+										SDL_TEXTUREACCESS_STREAMING,
+										WIDTH,
+										HEIGHT);
 	SDL_SetRelativeMouseMode(SDL_TRUE);
 	SDL_ShowCursor(SDL_DISABLE);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 17:12:35 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/05/19 17:20:42 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/05/31 23:06:49 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void hipressfps(t_env *w)
 	fps = (w->time - w->otime) / 1000.0;
 	w->movspeed = fps * 4.0;
 	w->rotspeed = fps * 1.6;
-	SDL_Delay(24);
+	SDL_Delay(16);
 	// printf("%lf\n", (1.0 / fps));
 }
 
@@ -81,9 +81,11 @@ void dance(t_env *w, t_ray *r)
 		}
 		and_there_was_light(w, r);
 		hipressfps(w);
+		SDL_UpdateTexture(w->txtr, NULL, w->pix, WIDTH * sizeof(Uint32));
+		SDL_RenderCopy(w->rdr, w->txtr, NULL, NULL);
 		SDL_RenderPresent(w->rdr);
-		SDL_SetRenderDrawColor(w->rdr, r->c_r, r->c_g, r->c_b, 255);
-		SDL_RenderClear(w->rdr);
+		// SDL_SetRenderDrawColor(w->rdr, r->c_r, r->c_g, r->c_b, 255);
+		// SDL_RenderClear(w->rdr);
 		w->inkeys = SDL_GetKeyboardState(NULL);
 		key_events(w);
 	}
