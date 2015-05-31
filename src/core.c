@@ -36,55 +36,87 @@ void 		motion_events(t_env *w)
 
 void		key_events(t_env *w)
 {
-	if (KEY == 27)
-		exit_game(w);
-	if (KEY == 119)
+	if (w->inkeys[SDL_SCANCODE_P])
+		init_player(w);
+	if (w->inkeys[SDL_SCANCODE_W])
 		mv_forward(w);
-	if (KEY == 115)
+	if (w->inkeys[SDL_SCANCODE_S])
 		mv_backward(w);
-	if (KEY == 97)
+	if (w->inkeys[SDL_SCANCODE_A])
 		mv_left(w);
-	if (KEY == 100)
+	if (w->inkeys[SDL_SCANCODE_D])
 		mv_right(w);
-	if (KEY == 113)
+	if (w->inkeys[SDL_SCANCODE_LEFT])
 		turn_left(w);
-	if (KEY == 101)
+	if (w->inkeys[SDL_SCANCODE_RIGHT])
 		turn_right(w);
 		// ft_putnbr(KEY);
 		// ft_putchar('\n');
+
 }
 
-void dance(t_env *w)
+double hipressfps(t_env *w)
 {
-double frametime;
-// unsigned int tps;
-// unsigned int otp;
-	t_ray 	*r;
+	double fps;
 
-	r = (t_ray *)malloc(sizeof(t_ray));
-	while(1)
+	w->otime = w->time;
+	w->time = SDL_GetTicks();
+	fps = (w->time - w->otime) / 1000.0;
+	printf("%lf\n", (1.0 / fps));
+	return (fps);
+}
+
+void dance(t_env *w, t_ray *r)
+{
+	while (1)
 	{
-// tps = SDL_GetTicks();
-		SDL_Delay(16);
+		SDL_Delay(20);
 		while (SDL_PollEvent(&w->event))
 		{
 			if (w->event.type == SDL_KEYDOWN)
-				key_events(w);
+				if (KEY == 27)
+					exit_game(w);
 			if (w->event.type == SDL_MOUSEMOTION)
 				motion_events(w);
-			if (w->event.type == SDL_MOUSEBUTTONDOWN)
-				button_events(w);
-			and_there_was_light(w, r);
-// dif = (SDL_GetTicks() - tps);
-			// if (otp < 20)
-			// SDL_Delay(20 - opt);
 		}
-w->otime = w->time;
-w->time = SDL_GetTicks();
-frametime = (w->time - w->otime) / 1000.0;
-printf("%lf\n", (1.0 / frametime));
-w->movspeed = frametime * 5.0;
-w->rotspeed = frametime * 3.0;
+		and_there_was_light(w, r);
+		hipressfps(w);
+		SDL_RenderPresent(w->rdr);
+		SDL_SetRenderDrawColor(w->rdr, r->c_r, r->c_g, r->c_b, 255);
+		SDL_RenderClear(w->rdr);
+		w->inkeys = SDL_GetKeyboardState(NULL);
+		key_events(w);
 	}
+
+
+
+// double frametime;//////////////////////////////////////////////////////////////
+// unsigned int tps;//////////////////////////////////////////////////////////////
+// unsigned int otp;//////////////////////////////////////////////////////////////
+// 																			 // 
+// 	while(1)																 //
+// 	{																		 //
+// tps = SDL_GetTicks();//////////////////////////////////////////////////////////
+// 		// SDL_Delay(16);													 //
+// 		while (SDL_PollEvent(&w->event))									 //
+// 		{																	 //
+// 			if (w->event.type == SDL_KEYDOWN)								 //
+// 				key_events(w);												 //
+// 			if (w->event.type == SDL_MOUSEMOTION)							 //
+// 				motion_events(w);											 //   /!\ travaux /!\
+// 			if (w->event.type == SDL_MOUSEBUTTONDOWN)						 //
+// 				button_events(w);											 //
+// 			and_there_was_light(w, r);										 //
+// dif = (SDL_GetTicks() - tps);//////////////////////////////////////////////////
+// if (otp < 20)//////////////////////////////////////////////////////////////////
+// SDL_Delay(20 - otp);///////////////////////////////////////////////////////////
+// 		}																	 //
+// w->otime = w->time;////////////////////////////////////////////////////////////
+// w->time = SDL_GetTicks();//////////////////////////////////////////////////////
+// frametime = (w->time - w->otime) / 1000.0;/////////////////////////////////////
+// printf("%lf\n", (1.0 / frametime));////////////////////////////////////////////
+// w->movspeed = frametime * 5.0;/////////////////////////////////////////////////
+// w->rotspeed = frametime * 3.0;/////////////////////////////////////////////////
+// 	}
 }
 

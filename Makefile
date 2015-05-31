@@ -20,12 +20,11 @@ NAME = wolf3d
 
 SRCDIR=		./src/
 
-SRC=		main.c        \
-			init_sdl.c 	   \
-			parse.c 		\
-			core.c 			 \
-			key_events.c 	  \
-			mouse_events.c 	   \
+SRC=		main.c 		\
+			init.c 		 \
+			core.c 		  \
+			key_events.c   \
+			mouse_events.c  \
 			raycasting.c
 			      
 SRCFIL=		$(addprefix $(SRCDIR),$(SRC))

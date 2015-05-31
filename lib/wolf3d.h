@@ -28,7 +28,7 @@
 # define MYSIZE world->mapys
 # define KEY w->event.key.keysym.sym
 # define MOTION w->event.motion
-# define ROT M_PI/90
+# define ROT M_PI/45
 
 typedef struct 					s_ray
 {
@@ -68,6 +68,7 @@ typedef struct					s_env
 	SDL_Renderer	*rdr;
 	SDL_Texture		*txtr;
 	SDL_Event		event;
+	const Uint8 	*inkeys;
 	// SDL_PixelFormat *fmt;
 	// void 			*pixel;
 	// int 			pitch;
@@ -96,7 +97,7 @@ typedef struct					s_env
 
 int 	init_sdl(t_env *w);
 int 	parse(char *av, t_env *world);
-void 	dance(t_env *w);
+void 	dance(t_env *w, t_ray *r);
 void 	exit_game(t_env *w);
 void 	mv_forward(t_env *w);
 void 	mv_backward(t_env *w);
