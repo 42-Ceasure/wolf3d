@@ -19,7 +19,7 @@ void trace(t_ray *r, int y1, int y2, t_env *w)
 	SDL_SetRenderDrawColor(w->rdr, r->c_r, r->c_g, r->c_b, 200);
 	SDL_RenderDrawLine(w->rdr, r->x, y1, r->x, y2);
 	SDL_SetRenderDrawColor(w->rdr, 58, 157, 35, 200);
-	SDL_RenderDrawLine(w->rdr, r->x, y2, r->x, 599);
+	SDL_RenderDrawLine(w->rdr, r->x, y2, r->x, HEIGHT - 1);
 }
 
 void 		and_there_was_light(t_env *w, t_ray *r)

@@ -22,8 +22,8 @@
 #include "SDL2.framework/Headers/SDL.h"
 
 # define NAME "wolf3d"
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 720
+# define HEIGHT 405
 # define MXSIZE world->mapxs
 # define MYSIZE world->mapys
 # define KEY w->event.key.keysym.sym
@@ -32,6 +32,7 @@
 # define MSP 0.25
 # define PROT w->rotspeed
 # define PMSP w->movspeed
+# define FOV 0.91
 
 typedef struct 					s_ray
 {

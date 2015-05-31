@@ -43,8 +43,8 @@ void mv_right(t_env *w)
 	int x;
 	int y;
 
-	x = (int)(w->posx + w->diry * PMSP);
-	y = (int)(w->posy + w->dirx * PMSP);
+	x = (int)(w->posx - w->diry * PMSP);
+	y = (int)(w->posy - w->dirx * PMSP);
 	if (w->map[x][(int)w->posy] == 0)
 		w->posx += w->diry * PMSP;
 	if (w->map[(int)w->posx][y] == 0)
@@ -56,8 +56,8 @@ void mv_left(t_env *w)
 	int x;
 	int y;
 
-	x = (int)(w->posx - w->diry * PMSP);
-	y = (int)(w->posy - w->dirx * PMSP);
+	x = (int)(w->posx + w->diry * PMSP);
+	y = (int)(w->posy + w->dirx * PMSP);
 	if (w->map[(int)w->posx][y] == 0)
 		w->posx -= w->diry * PMSP;
 	if (w->map[x][(int)w->posy] == 0)

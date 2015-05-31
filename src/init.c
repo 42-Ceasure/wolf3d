@@ -19,7 +19,7 @@ void init_player(t_env *w)
 	w->dirx = -1;
 	w->diry = 0;
 	w->planx = 0;
-	w->plany = 0.66;
+	w->plany = FOV;
 	w->time = 0;
 	w->otime = 0;
 	w->wscr = WIDTH;
@@ -30,7 +30,11 @@ int init_sdl(t_env *w)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 		return (-1);
-	w->win = SDL_CreateWindow(NAME, 820, 420, WIDTH, HEIGHT, SDL_WINDOW_BORDERLESS);
+	w->win = SDL_CreateWindow(NAME, SDL_WINDOWPOS_CENTERED,
+									SDL_WINDOWPOS_CENTERED,
+									WIDTH,
+									HEIGHT,
+									SDL_WINDOW_BORDERLESS);
 	w->rdr = SDL_CreateRenderer(w->win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	// SDL_RenderSetLogicalSize(w->rdr, WIDTH, HEIGHT);
 	// w->pix = (Uint32 *)malloc(sizeof(Uint32) * WIDTH * HEIGHT);

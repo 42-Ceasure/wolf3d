@@ -50,6 +50,8 @@ void		key_events(t_env *w)
 		turn_left(w);
 	if (w->inkeys[SDL_SCANCODE_RIGHT])
 		turn_right(w);
+	if (w->inkeys[SDL_SCANCODE_LSHIFT])
+		mv_forward(w);
 }
 
 void hipressfps(t_env *w)
@@ -61,8 +63,7 @@ void hipressfps(t_env *w)
 	fps = (w->time - w->otime) / 1000.0;
 	w->movspeed = fps * 4.0;
 	w->rotspeed = fps * 1.6;
-	// if (1.0 / fps > 30)
-		SDL_Delay(20);
+	SDL_Delay(24);
 	// printf("%lf\n", (1.0 / fps));
 }
 
