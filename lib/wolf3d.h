@@ -6,7 +6,7 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 04:42:57 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/05/31 23:13:19 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/01 03:52:58 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,6 @@ void 	turn_left(t_env *w);
 void 	turn_right(t_env *w);
 void 	init_player(t_env *w);
 void 	and_there_was_light(t_env *w, t_ray *r);
+Uint32 	color(int a, int r, int g, int b);
 
 #endif

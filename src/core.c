@@ -6,7 +6,7 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 17:12:35 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/05/31 23:06:49 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/01 03:54:43 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ void dance(t_env *w, t_ray *r)
 		SDL_UpdateTexture(w->txtr, NULL, w->pix, WIDTH * sizeof(Uint32));
 		SDL_RenderCopy(w->rdr, w->txtr, NULL, NULL);
 		SDL_RenderPresent(w->rdr);
-		// SDL_SetRenderDrawColor(w->rdr, r->c_r, r->c_g, r->c_b, 255);
-		// SDL_RenderClear(w->rdr);
 		w->inkeys = SDL_GetKeyboardState(NULL);
 		key_events(w);
 	}

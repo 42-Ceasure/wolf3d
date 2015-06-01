@@ -6,7 +6,7 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/27 16:03:12 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/05/31 22:09:33 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/01 03:40:15 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void init_player(t_env *w)
 {
-	w->posx = 22;
-	w->posy = 12;
+	w->posx = 3;
+	w->posy = 4;
 	w->dirx = -1;
 	w->diry = 0;
 	w->planx = 0;

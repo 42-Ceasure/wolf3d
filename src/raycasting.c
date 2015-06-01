@@ -6,47 +6,70 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 17:12:35 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/06/01 01:46:19 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/01 04:03:43 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
 
-Uint32 color(int r, int g, int b)
+Uint32 color(int a, int r, int g, int b)
 { 
-	return (((((r << 8) + g) << 8)+ b));
+	return ((((((a << 8) + r) << 8) + g) << 8)+ b);
+}
+
+void cross(t_env *w)
+{
+	w->pix[358 + 202 * WIDTH] = color(0, 255, 255, 255);
+	w->pix[359 + 202 * WIDTH] = color(0, 255, 255, 255);
+	w->pix[360 + 202 * WIDTH] = color(0, 255, 255, 255);
+	w->pix[361 + 202 * WIDTH] = color(0, 255, 255, 255);
+	w->pix[358 + 203 * WIDTH] = color(0, 255, 255, 255);
+	w->pix[359 + 203 * WIDTH] = color(0, 255, 255, 255);
+	w->pix[360 + 203 * WIDTH] = color(0, 255, 255, 255);
+	w->pix[361 + 203 * WIDTH] = color(0, 255, 255, 255);
+	w->pix[359 + 201 * WIDTH] = color(0, 255, 255, 255);
+	w->pix[359 + 204 * WIDTH] = color(0, 255, 255, 255);
+	w->pix[360 + 201 * WIDTH] = color(0, 255, 255, 255);
+	w->pix[360 + 204 * WIDTH] = color(0, 255, 255, 255);
 }
 
 void trace(t_ray *r, int y1, int y2, t_env *w)
 {
 	int y;
+	int ys;
 
 	y = 0;
+	ys = 0;
 	while (y < y1 && y < 150)
 	{
-		w->pix[r->x + (y * WIDTH)] = color((169 - y * 169/150), (208 - y * 81/150), 255);
-		y++; 							//   0  127  254
+		w->pix[r->x + (y * WIDTH)] = color(0, (169 - y * 169/150), (208 - y * 81/150), 255);
+		y++;
 	}
 	while (y < y1)
 	{
-		w->pix[r->x + (y * WIDTH)] = color(0, 127, 255);
-		y++; 							//   0  127  254
+		w->pix[r->x + (y * WIDTH)] = color(0, 0, 127, 255);
+		y++;
+		if (y >= 200)
+			ys++;
 	}
 	while (y <= y2)
 	{
-		w->pix[r->x + (y * WIDTH)] = color(r->c_r, r->c_g, r->c_b);
+		w->pix[r->x + (y * WIDTH)] = color(r->c_a, r->c_r, r->c_g, r->c_b);
 		y++;
-	}
-	while (y > y2 && y < 350)
-	{
-		w->pix[r->x + (y * WIDTH)] = color(159 - y * 101/350, 232 - y * 75/350, 85 - y * 50/350);// 103-159-90-vertmousse 159-232-85-vertannis
-		y++; 							// 58, 157, 35
+			if (y >= 200)
+		ys++;
 	}
 	while (y > y2 && y < WIDTH)
 	{
-		w->pix[r->x + (y * WIDTH)] = color(58, 157, 35);// 103-159-90-vertmousse 159-232-85-vertannis
-		y++; 							// 58, 157, 35
+		w->pix[r->x + (y * WIDTH)] = color(0, 27 + ys * 132/405, 79 + ys * 153/405, 8 + ys * 77/405);// 103-159-90-vertmousse 159-232-85-vertannis
+		y++;
+		ys++;
 	}
+	cross(w);
+			// int ysin = 0;
+			// double xd = (float)r->x / 30;
+			// ysin = 40 * sin(xd) + 200;
+			// w->pix[r->x + ysin * WIDTH] = color(0, 255, 255, 255);
 }
 
 void 		and_there_was_light(t_env *w, t_ray *r)
