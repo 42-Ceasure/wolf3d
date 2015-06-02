@@ -88,6 +88,7 @@ void 		and_there_was_light(t_env *w, t_ray *r)
 		dos(r);
 		tres(w, r);
 		test_couleur(w, r);
+		test_couleur2(w, r);
 		trace(r, r->drawstart, r->drawend, w);
 		r->x++;
 	}

@@ -49,12 +49,18 @@ static void wall(t_ray *r, int y1, int y2, t_env *w)
 		y2 = HEIGHT;
 	if (r->y < 0)
 		r->y = 0;
-	while (r->y <= y2)
+	r->start = r->y;
+	r->stop = y2;
+	if (r->y == y1)
+		w->pix[r->x + (r->y * WIDTH)] = color(r, GRISACIER);
+	r->y++;
+	while (r->y < y2)
 	{
-		w->pix[r->x + (r->y * WIDTH)] = color(r, r->color);
+		w->pix[r->x + (r->y * WIDTH)] = color2colorw(r, r->color2, r->color);
 
 		r->y++;
 	}
+	w->pix[r->x + (r->y * WIDTH)] = color(r, GRISFER);
 }
 
 static void fond(t_ray *r, t_env *w)
@@ -78,7 +84,7 @@ static void fond(t_ray *r, t_env *w)
 	r->stop = HEIGHT;
 	while (r->y < r->stop)
 	{
-		w->pix[r->x + (r->y * WIDTH)] = color2color(r, VERTANIS, VERTGAZON);
+		w->pix[r->x + (r->y * WIDTH)] = color2color(r, VERTGAZON, VERTDEHOOKER);
 		r->y++;
 	}
 }

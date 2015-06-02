@@ -61,6 +61,7 @@ typedef struct 					s_ray
 	int 			drawstart;
 	int 			drawend;
 	Uint32 			color;
+	Uint32 			color2;
 	Uint8 			c_a1;
 	Uint8 			c_r1;
 	Uint8 			c_g1;
@@ -115,7 +116,9 @@ void 				init_player(t_env *w);
 void 				and_there_was_light(t_env *w, t_ray *r);
 void 				trace(t_ray *r, int y1, int y2, t_env *w);
 void 				test_couleur(t_env *w, t_ray *r);
+void 				test_couleur2(t_env *w, t_ray *r);
 Uint32 				color(t_ray *r, Uint32 color1);
 Uint32 				color2color(t_ray *r, Uint32 color1, Uint32 color2);
+Uint32 				color2colorw(t_ray *r, Uint32 color1, Uint32 color2);
 
 #endif
