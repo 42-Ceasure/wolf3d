@@ -13,12 +13,6 @@
 #include "../lib/wolf3d.h"
 #include "../lib/colors.h"
 
-void 		button_events(t_env *w)
-{
-	if (w)
-		;
-}
-
 void 		motion_events(t_env *w)
 {
 	if (MOTION.xrel < 0)
@@ -65,7 +59,6 @@ void 		hipressfps(t_env *w)
 	w->movspeed = fps * 4.0;
 	w->rotspeed = fps * 1.6;
 	SDL_Delay(16);
-	// printf("%lf\n", (1.0 / fps));
 }
 
 void 		dance(t_env *w, t_ray *r)

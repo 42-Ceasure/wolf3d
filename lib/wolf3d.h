@@ -22,18 +22,18 @@
 #include "libft/libft.h"
 #include "SDL2.framework/Headers/SDL.h"
 
-# define NAME "wolf3d"
-# define WIDTH 720
-# define HEIGHT 405
-# define MXSIZE world->mapxs
-# define MYSIZE world->mapys
-# define KEY w->event.key.keysym.sym
-# define MOTION w->event.motion
-# define ROT M_PI/45
-# define MSP 0.25
-# define PROT w->rotspeed
-# define PMSP w->movspeed
-# define FOV 0.85
+# define			NAME "wolf3d"
+# define			WIDTH 720
+# define			HEIGHT 405
+# define			MXSIZE world->mapxs
+# define			MYSIZE world->mapys
+# define			KEY w->event.key.keysym.sym
+# define			MOTION w->event.motion
+# define			ROT M_PI/45
+# define			MSP 0.25
+# define			PROT w->rotspeed
+# define			PMSP w->movspeed
+# define			FOV 0.85
 
 typedef struct 					s_ray
 {
@@ -119,6 +119,6 @@ void 				test_couleur(t_env *w, t_ray *r);
 void 				test_couleur2(t_env *w, t_ray *r);
 Uint32 				color(t_ray *r, Uint32 color1);
 Uint32 				color2color(t_ray *r, Uint32 color1, Uint32 color2);
-Uint32 				color2colorw(t_ray *r, Uint32 color1, Uint32 color2);
+Uint32 				c2colorw(t_ray *r, Uint32 color1, Uint32 color2, t_env *w);
 
 #endif

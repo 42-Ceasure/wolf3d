@@ -56,7 +56,7 @@ Uint32 		color2color(t_ray *r, Uint32 color1, Uint32 color2)
 	return ((((((a << 8) + ro) << 8) + g) << 8)+ b);
 }
 
-Uint32 		color2colorw(t_ray *r, Uint32 color1, Uint32 color2)
+Uint32 		c2colorw(t_ray *r, Uint32 color1, Uint32 color2, t_env *w)
 {
 	Uint8 	a;
 	Uint8 	ro;
@@ -75,7 +75,7 @@ Uint32 		color2colorw(t_ray *r, Uint32 color1, Uint32 color2)
 	ro = r->c_r1 + (r->y - r->start) * (r->c_r2 - r->c_r1)/(r->stop - r->start);
 	g = r->c_g1 + (r->y - r->start) * (r->c_g2 - r->c_g1)/(r->stop - r->start);
 	b = r->c_b1 + (r->y - r->start) * (r->c_b2 - r->c_b1)/(r->stop - r->start);
-	if (r->side == 1 && r->y > r->drawstart)
+	if (r->side == 1 && r->y > r->drawstart && w->map[r->mapx][r->mapy] != 6)
 	{
 		a = 0x00;
 		ro /= 1.2;

@@ -51,9 +51,9 @@ static void wall(t_ray *r, int y1, int y2, t_env *w)
 		r->y = 0;
 	r->start = r->y;
 	r->stop = y2;
-	while (r->y < y2)
+	while (r->y <= y2)
 	{
-		w->pix[r->x + (r->y * WIDTH)] = color2colorw(r, r->color2, r->color);
+		w->pix[r->x + (r->y * WIDTH)] = c2colorw(r, r->color2, r->color, w);
 
 		r->y++;
 	}

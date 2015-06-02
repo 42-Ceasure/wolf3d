@@ -38,10 +38,3 @@ void 		turn_left(t_env *w)
 	w->planx = w->planx * cos(PROT) - w->plany * sin(PROT);
 	w->plany = tmpp * sin(PROT) + w->plany * cos(PROT);
 }
-
-	// int 	ysin;
-	// double 	xsin;
-	// xsin = (float)r->x / 30;
-	// 	ysin = (y2-y1) * sin(xsin) + (y1 + ((y2-y1)/10));
-	// 	if (ysin > y1 && ysin < y2 && ysin >= 0)
-	// 		w->pix[r->x + ysin * WIDTH] = color(r, r->color/2);

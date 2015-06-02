@@ -18,12 +18,12 @@ void 		mv_right(t_env *w)
 	int 	x;
 	int 	y;
 
-	x = (int)(w->posx - w->diry * PMSP);
-	y = (int)(w->posy - w->dirx * PMSP);
+	x = (int)(w->posx + w->planx * PMSP);
+	y = (int)(w->posy + w->plany * PMSP);
 	if (w->map[x][(int)w->posy] == 0)
-		w->posx += w->diry * PMSP;
+		w->posx += w->planx * PMSP;
 	if (w->map[(int)w->posx][y] == 0)
-		w->posy -= w->dirx * PMSP;
+		w->posy += w->plany * PMSP;
 }
 
 void 		mv_left(t_env *w)
@@ -31,12 +31,12 @@ void 		mv_left(t_env *w)
 	int 	x;
 	int 	y;
 
-	x = (int)(w->posx + w->diry * PMSP);
-	y = (int)(w->posy + w->dirx * PMSP);
-	if (w->map[(int)w->posx][y] == 0)
-		w->posx -= w->diry * PMSP;
+	x = (int)(w->posx - w->planx * PMSP);
+	y = (int)(w->posy - w->plany * PMSP);
 	if (w->map[x][(int)w->posy] == 0)
-		w->posy += w->dirx * PMSP;
+		w->posx -= w->planx * PMSP;
+	if (w->map[(int)w->posx][y] == 0)
+		w->posy -= w->plany * PMSP;
 }
 
 void 		mv_backward(t_env *w)
@@ -71,6 +71,3 @@ void 		exit_game(t_env *w)
 	SDL_Quit();
 	exit(1);
 }
-
-	
-// if(worldMap[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
