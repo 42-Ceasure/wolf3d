@@ -13,36 +13,10 @@
 #include "../lib/wolf3d.h"
 #include "../lib/colors.h"
 
-void turn_right(t_env *w)
+void 		mv_right(t_env *w)
 {
-	double tmpx;
-	double tmpp;
-
-	tmpx = w->dirx;
-	tmpp = w->planx;
-	w->dirx = w->dirx * cos(-PROT) - w->diry * sin(-PROT);
-	w->diry = tmpx * sin(-PROT) + w->diry * cos(-PROT);
-	w->planx = w->planx * cos(-PROT) - w->plany * sin(-PROT);
-	w->plany = tmpp * sin(-PROT) + w->plany * cos(-PROT);
-}
-
-void turn_left(t_env *w)
-{
-	double tmpx;
-	double tmpp;
-
-	tmpx = w->dirx;
-	tmpp = w->planx;
-	w->dirx = w->dirx * cos(PROT) - w->diry * sin(PROT);
-	w->diry = tmpx * sin(PROT) + w->diry * cos(PROT);
-	w->planx = w->planx * cos(PROT) - w->plany * sin(PROT);
-	w->plany = tmpp * sin(PROT) + w->plany * cos(PROT);
-}
-
-void mv_right(t_env *w)
-{
-	int x;
-	int y;
+	int 	x;
+	int 	y;
 
 	x = (int)(w->posx - w->diry * PMSP);
 	y = (int)(w->posy - w->dirx * PMSP);
@@ -52,10 +26,10 @@ void mv_right(t_env *w)
 		w->posy -= w->dirx * PMSP;
 }
 
-void mv_left(t_env *w)
+void 		mv_left(t_env *w)
 {
-	int x;
-	int y;
+	int 	x;
+	int 	y;
 
 	x = (int)(w->posx + w->diry * PMSP);
 	y = (int)(w->posy + w->dirx * PMSP);
@@ -65,10 +39,10 @@ void mv_left(t_env *w)
 		w->posy += w->dirx * PMSP;
 }
 
-void mv_backward(t_env *w)
+void 		mv_backward(t_env *w)
 {
-	int x;
-	int y;
+	int 	x;
+	int 	y;
 
 	x = (int)(w->posx - w->dirx * PMSP);
 	y = (int)(w->posy - w->diry * PMSP);
@@ -78,10 +52,10 @@ void mv_backward(t_env *w)
 		w->posy -= w->diry * PMSP;
 }
 
-void mv_forward(t_env *w)
+void 		mv_forward(t_env *w)
 {
-	int x;
-	int y;
+	int 	x;
+	int 	y;
 
 	x = (int)(w->posx + w->dirx * PMSP);
 	y = (int)(w->posy + w->diry * PMSP);
@@ -91,7 +65,7 @@ void mv_forward(t_env *w)
 		w->posy += w->diry * PMSP;
 }
 
-void exit_game(t_env *w)
+void 		exit_game(t_env *w)
 {
 	free(w);
 	SDL_Quit();

@@ -55,9 +55,9 @@ void		key_events(t_env *w)
 		mv_forward(w);
 }
 
-void hipressfps(t_env *w)
+void 		hipressfps(t_env *w)
 {
-	double fps;
+	double 	fps;
 
 	w->otime = w->time;
 	w->time = SDL_GetTicks();
@@ -68,7 +68,7 @@ void hipressfps(t_env *w)
 	// printf("%lf\n", (1.0 / fps));
 }
 
-void dance(t_env *w, t_ray *r)
+void 		dance(t_env *w, t_ray *r)
 {
 	while (1)
 	{

@@ -84,18 +84,11 @@ void 		and_there_was_light(t_env *w, t_ray *r)
 	r->x = 0;
 	while (r->x < w->wscr)
 	{
-		// ft_putendl("1");
 		uno(w, r);
-		// ft_putendl("2");
 		dos(r);
-		// ft_putendl("3");
 		tres(w, r);
-		// ft_putendl("4");
 		test_couleur(w, r);
-		// ft_putendl("5");
 		trace(r, r->drawstart, r->drawend, w);
-		// ft_putendl("6");
 		r->x++;
-		// ft_putendl("7");
 	}
 }

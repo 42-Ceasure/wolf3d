@@ -13,7 +13,7 @@
 #include "../lib/wolf3d.h"
 #include "../lib/colors.h"
 
-void init_player(t_env *w)
+void 		init_player(t_env *w)
 {
 	w->posx = 3;
 	w->posy = 4;
@@ -27,7 +27,7 @@ void init_player(t_env *w)
 	w->hscr = HEIGHT;
 }
 
-int init_sdl(t_env *w)
+int 		init_sdl(t_env *w)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 		return (-1);

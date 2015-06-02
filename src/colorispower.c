@@ -13,12 +13,12 @@
 #include "../lib/wolf3d.h"
 #include "../lib/colors.h"
 
-Uint32 color(t_ray *r, Uint32 color1)
+Uint32 		color(t_ray *r, Uint32 color1)
 {
-	Uint8 a;
-	Uint8 ro;
-	Uint8 g;
-	Uint8 b;
+	Uint8 	a;
+	Uint8 	ro;
+	Uint8 	g;
+	Uint8 	b;
 
 	a = (color1 & 0xFF000000) >> 24;
 	ro = (color1 & 0x00FF0000) >> 16;
@@ -34,12 +34,12 @@ Uint32 color(t_ray *r, Uint32 color1)
 	return ((((((a << 8) + ro) << 8) + g) << 8)+ b);
 }
 
-Uint32 color2color(t_ray *r, Uint32 color1, Uint32 color2)
+Uint32 		color2color(t_ray *r, Uint32 color1, Uint32 color2)
 {
-	Uint8 a;
-	Uint8 ro;
-	Uint8 g;
-	Uint8 b;
+	Uint8 	a;
+	Uint8 	ro;
+	Uint8 	g;
+	Uint8 	b;
 
 	r->c_a1 = (color1 & 0xFF000000) >> 24;
 	r->c_r1 = (color1 & 0x00FF0000) >> 16;
@@ -56,7 +56,7 @@ Uint32 color2color(t_ray *r, Uint32 color1, Uint32 color2)
 	return ((((((a << 8) + ro) << 8) + g) << 8)+ b);
 }
 
-void test_couleur(t_env *w, t_ray *r)
+void 		test_couleur(t_env *w, t_ray *r)
 {
 	if (w->map[r->mapx][r->mapy] == 1)
 		r->color = GREGE;

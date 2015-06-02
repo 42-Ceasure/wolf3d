@@ -83,7 +83,7 @@ static void fond(t_ray *r, t_env *w)
 	}
 }
 
-void trace(t_ray *r, int y1, int y2, t_env *w)
+void 		trace(t_ray *r, int y1, int y2, t_env *w)
 {
 	fond(r, w);
 	wall(r, y1, y2, w);
