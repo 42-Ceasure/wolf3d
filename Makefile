@@ -25,7 +25,9 @@ SRC=		main.c 		\
 			core.c 		  \
 			key_events.c   \
 			mouse_events.c  \
-			raycasting.c
+			raycasting.c 	 \
+			tracing.c 		  \
+			colorispower.c
 			      
 SRCFIL=		$(addprefix $(SRCDIR),$(SRC))
 

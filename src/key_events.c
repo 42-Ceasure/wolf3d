@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
+#include "../lib/colors.h"
 
 void turn_right(t_env *w)
 {

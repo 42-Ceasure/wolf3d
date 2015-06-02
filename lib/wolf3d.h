@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <fcntl.h>
+#include "colors.h"
 #include "libft/libft.h"
 #include "SDL2.framework/Headers/SDL.h"
 
@@ -36,33 +37,38 @@
 
 typedef struct 					s_ray
 {
-	int 	x;
-	double 	camerax; 
-	double 	rayposx;
-	double 	rayposy;
-	double 	raydirx;
-	double 	raydiry;
-	
-	int 	mapx;
-	int 	mapy;
-	double 	sdstx;		// side dist x;
-	double 	sdsty;		// side dist y;
-	double 	ddstx;		// delta dist x;
-	double 	ddsty;		// delta dist y;
-	double 	pwalldst;	// perpendiculaire wall distance, to lenght of ray;
-	int 	stepx;
-	int 	stepy;
-	int 	hit;
-	int		side;
-
-	int 	lheight;
-	int 	drawstart;
-	int 	drawend;
-
-	Uint8 	c_r;
-	Uint8 	c_g;
-	Uint8 	c_b;
-	Uint8 	c_a;
+	double 			camerax; 
+	double 			rayposx;
+	double 			rayposy;
+	double 			raydirx;
+	double 			raydiry;
+	double 			sdstx;
+	double 			sdsty;
+	double 			ddstx;
+	double 			ddsty;
+	double 			pwalldst;
+	int 			x;
+	int 			y;
+	int 			stop;
+	int 			start;
+	int 			mapx;
+	int 			mapy;
+	int 			stepx;
+	int 			stepy;
+	int 			hit;
+	int				side;
+	int 			lheight;
+	int 			drawstart;
+	int 			drawend;
+	Uint32 			color;
+	Uint8 			c_a1;
+	Uint8 			c_r1;
+	Uint8 			c_g1;
+	Uint8 			c_b1;
+	Uint8 			c_a2;
+	Uint8 			c_r2;
+	Uint8 			c_g2;
+	Uint8 			c_b2;
 }								t_ray;
 
 typedef struct					s_env
@@ -73,11 +79,7 @@ typedef struct					s_env
 	SDL_Texture		*txtr;
 	SDL_Event		event;
 	const Uint8 	*inkeys;
-	// SDL_PixelFormat *fmt;
-	// void 			*pixel;
-	// int 			pitch;
 	Uint32			*pix;
-	Uint32 			colorSDL;
 	/*   MAP   */
 	int 			**map;
 	int 			mapxs;
@@ -89,8 +91,8 @@ typedef struct					s_env
 	double 			diry;
 	double 			planx;
 	double 			plany;
-	double movspeed;
-	double rotspeed;
+	double 			movspeed;
+	double 			rotspeed;
 	/* SCREEN  */
 	int 			wscr;
 	int 			hscr;
@@ -99,18 +101,21 @@ typedef struct					s_env
 	double 			otime;
 }								t_env;
 
-int 	init_sdl(t_env *w);
-int 	parse(char *av, t_env *world);
-void 	dance(t_env *w, t_ray *r);
-void 	exit_game(t_env *w);
-void 	mv_forward(t_env *w);
-void 	mv_backward(t_env *w);
-void 	mv_left(t_env *w);
-void 	mv_right(t_env *w);
-void 	turn_left(t_env *w);
-void 	turn_right(t_env *w);
-void 	init_player(t_env *w);
-void 	and_there_was_light(t_env *w, t_ray *r);
-Uint32 	color(int a, int r, int g, int b);
+int 				init_sdl(t_env *w);
+int 				parse(char *av, t_env *world);
+void 				dance(t_env *w, t_ray *r);
+void 				exit_game(t_env *w);
+void 				mv_forward(t_env *w);
+void 				mv_backward(t_env *w);
+void 				mv_left(t_env *w);
+void 				mv_right(t_env *w);
+void 				turn_left(t_env *w);
+void 				turn_right(t_env *w);
+void 				init_player(t_env *w);
+void 				and_there_was_light(t_env *w, t_ray *r);
+void 				trace(t_ray *r, int y1, int y2, t_env *w);
+void 				test_couleur(t_env *w, t_ray *r);
+Uint32 				color(t_ray *r, Uint32 color1);
+Uint32 				color2color(t_ray *r, Uint32 color1, Uint32 color2);
 
 #endif

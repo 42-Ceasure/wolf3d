@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
+#include "../lib/colors.h"
 
 void init_player(t_env *w)
 {

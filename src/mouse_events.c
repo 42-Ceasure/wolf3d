@@ -11,3 +11,12 @@
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
+#include "../lib/colors.h"
+
+
+	// int 	ysin;
+	// double 	xsin;
+	// xsin = (float)r->x / 30;
+	// 	ysin = (y2-y1) * sin(xsin) + (y1 + ((y2-y1)/10));
+	// 	if (ysin > y1 && ysin < y2 && ysin >= 0)
+	// 		w->pix[r->x + ysin * WIDTH] = color(r, r->color/2);

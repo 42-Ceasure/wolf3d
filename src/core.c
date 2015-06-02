@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
+#include "../lib/colors.h"
 
 void 		button_events(t_env *w)
 {

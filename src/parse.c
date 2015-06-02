@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
+#include "../lib/colors.h"
 
 void 		parse_map(char *av, t_env *world)
 {

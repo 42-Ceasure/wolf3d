@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
+#include "../lib/colors.h"
 
 int				main(int ac, char **av)
 {
