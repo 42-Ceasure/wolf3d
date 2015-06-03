@@ -6,14 +6,14 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 17:12:35 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/06/01 04:03:43 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/03 21:18:24 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
 #include "../lib/colors.h"
 
-static void cross(t_env *w, t_ray *r)
+static void		cross(t_env *w, t_ray *r)
 {
 	r->y = 0;
 	w->pix[355 + 201 * WIDTH] = color(r, BLANC);
@@ -42,80 +42,73 @@ static void cross(t_env *w, t_ray *r)
 	w->pix[364 + 202 * WIDTH] = color(r, BLANC);
 }
 
-static void wall(t_ray *r, int y1, int y2, t_env *w)
+static void		wall(t_ray *r, int y1, int y2, t_env *w)
 {
-	// r->y = y1;
-	// if (y2 > HEIGHT)
-	// 	y2 = HEIGHT;
-	// if (r->y < 0)
-	// 	r->y = 0;
-	// r->start = r->y;
-	// r->stop = y2;
-	// while (r->y <= y2)
-	// {
-	// 	w->pix[r->x + (r->y * WIDTH)] = c2colorw(r, r->color2, r->color, w);
-
-	// 	r->y++;
-	// }
-	int d;
+	int			d;
 
 	r->y = y1;
 	while (r->y < y2)
 	{
 		d = r->y * 256 - HEIGHT * 128 + r->lheight * 128;
 		r->texy = ((d * 64) / r->lheight) / 256;
-		r->color = w->mur[64 * r->texy + r->texx];
-		if(r->side == 1) 
-			r->color = (r->color >> 1) & 8355711;
+		r->color = color(r, w->mur[64 * r->texy + r->texx]);
 		w->pix[r->x + (r->y * WIDTH)] = r->color;
 		r->y++;
 	}
 }
 
-void fond(t_ray *r, t_env *w)
+void			fond(t_ray *r)
 {
-	r->y = 0;
-	r->start = 0;
-	r->stop = 150;
-	while (r->y < r->stop)
+	if (r->side == 0 && r->raydirx > 0)
 	{
-		w->pix[r->x + (r->y * WIDTH)] = color2color(r, AZUR, AZURIN);
-		r->y++;
+		r->floorxwall = r->mapx;
+		r->floorywall = r->mapy + r->wallx;
 	}
-	r->start = 150;
-	r->stop = 202;
-	while (r->y < r->stop)
+	else if (r->side == 0 && r->raydirx < 0)
 	{
-		w->pix[r->x + (r->y * WIDTH)] = color(r, AZURIN);
-		r->y++;
+		r->floorxwall = r->mapx + 1.0;
+		r->floorywall = r->mapy + r->wallx;
 	}
-	r->start = 202;
-	r->stop = HEIGHT;
-	while (r->y < r->stop)
+	else if (r->side == 1 && r->raydiry > 0)
 	{
-		w->pix[r->x + (r->y * WIDTH)] = color2color(r, VERTGAZON, VERTDEHOOKER);
-		r->y++;
+		r->floorxwall = r->mapx + r->wallx;
+		r->floorywall = r->mapy;
 	}
-	// int y;
-
-	// y = 0;
-	// r->y = 0;
-	// while (r->y < 200)
-	// {
-	// 	w->pix[r->x + (r->y * WIDTH)] = w->sky[r->x + (r->y * WIDTH)];
-	// 	r->y++;
-	// }
-	// while (r->y < 405)
-	// {
-	// 	w->pix[r->x + (r->y * WIDTH)] = w->sol[r->x + (y * 768)];
-	// 	y++;
-	// 	r->y++;
-	// }
+	else
+	{
+		r->floorxwall = r->mapx + r->wallx;
+		r->floorywall = r->mapy + 1.0;
+	}
+	r->distwall = r->pwalldst;
+	r->distplayer = 0.0;
+	if (r->drawend < 0)
+		r->drawend = HEIGHT;
+	r->y = r->drawend + 1;
 }
 
-void 		trace(t_ray *r, int y1, int y2, t_env *w)
+void			fond2(t_ray *r, t_env *w)
 {
-	fond(r, w);
+	while (r->y < HEIGHT)
+	{
+		r->currentdist = HEIGHT / (2.0 * r->y - HEIGHT);
+		r->weight = (r->currentdist - r->distplayer)
+					/ (r->distwall - r->distplayer);
+		r->cfloorx = r->weight * r->floorxwall + (1.0 - r->weight) * w->posx;
+		r->cfloory = r->weight * r->floorywall + (1.0 - r->weight) * w->posy;
+		r->ftexx = (int)(r->cfloorx * TEXWH) % TEXWH;
+		r->ftexy = (int)(r->cfloory * TEXWH) % TEXWH;
+		w->pix[r->x + (r->y * WIDTH)] =
+						(w->sol[TEXWH * r->ftexy + r->ftexx] >> 1) & 8355711;
+		w->pix[r->x + ((HEIGHT - r->y) * WIDTH)] =
+						w->sky[TEXWH * r->ftexy + r->ftexx];
+		r->y++;
+	}
+}
+
+void			trace(t_ray *r, int y1, int y2, t_env *w)
+{
 	wall(r, y1, y2, w);
+	fond(r);
+	fond2(r, w);
 	cross(w, r);
 }

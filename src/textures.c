@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 17:12:35 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/05/19 17:20:42 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/03 21:09:54 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
 #include "../lib/colors.h"
 
-void 	make_it_beautifull(t_env *w)
+void	make_it_beautifull(t_env *w)
 {
-	SDL_Surface 	*tmp;
+	SDL_Surface		*tmp;
 
-	w->load = SDL_LoadBMP("/Users/Ceasure/Code/wolf3d/src/textures/boris.bmp");
+	w->load = SDL_LoadBMP("./src/textures/wool.bmp");
 	tmp = SDL_ConvertSurfaceFormat(w->load, SDL_PIXELFORMAT_ARGB8888, 0);
 	SDL_FreeSurface(w->load);
 	w->sky = (Uint32 *)malloc(sizeof(Uint32) * tmp->w * tmp->h);
-	w->sky = tmp->pixels;
+	ft_memcpy(w->sky, tmp->pixels, (sizeof(Uint32) * tmp->w * tmp->h));
 	SDL_FreeSurface(tmp);
-
-	w->load = SDL_LoadBMP("/Users/Ceasure/Code/wolf3d/src/textures/grass.bmp");
+	w->load = SDL_LoadBMP("./src/textures/plank.bmp");
 	tmp = SDL_ConvertSurfaceFormat(w->load, SDL_PIXELFORMAT_ARGB8888, 0);
 	SDL_FreeSurface(w->load);
 	w->sol = (Uint32 *)malloc(sizeof(Uint32) * tmp->w * tmp->h);
-	w->sol = tmp->pixels;
+	ft_memcpy(w->sol, tmp->pixels, (sizeof(Uint32) * tmp->w * tmp->h));
 	SDL_FreeSurface(tmp);
-
-	w->load = SDL_LoadBMP("/Users/Ceasure/Code/wolf3d/src/textures/mur.bmp");
+	w->load = SDL_LoadBMP("./src/textures/mur.bmp");
 	tmp = SDL_ConvertSurfaceFormat(w->load, SDL_PIXELFORMAT_ARGB8888, 0);
 	SDL_FreeSurface(w->load);
 	w->mur = (Uint32 *)malloc(sizeof(Uint32) * tmp->w * tmp->h);
-	w->mur = tmp->pixels;
+	ft_memcpy(w->mur, tmp->pixels, (sizeof(Uint32) * tmp->w * tmp->h));
 	SDL_FreeSurface(tmp);
 }

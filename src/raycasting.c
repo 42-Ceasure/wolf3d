@@ -6,12 +6,35 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 17:12:35 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/06/01 04:03:43 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/03 21:22:08 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
 #include "../lib/colors.h"
+
+static void etdequatre(t_env *w, t_ray *r)
+{
+	r->lheight = abs((int)(w->hscr / r->pwalldst));
+	r->drawstart = -(r->lheight) / 2 + w->hscr / 2;
+	if (r->drawstart < 0)
+		r->drawstart = 0;
+	r->drawend = r->lheight / 2 + w->hscr / 2;
+	if (r->drawend >= HEIGHT)
+		r->drawend = HEIGHT - 1;
+	if (r->side == 1)
+		r->wallx = r->rayposx + ((r->mapy - r->rayposy + (1 - r->stepy) / 2)
+				/ r->raydiry) * r->raydirx;
+	else
+		r->wallx = r->rayposy + ((r->mapx - r->rayposx + (1 - r->stepx) / 2)
+				/ r->raydirx) * r->raydiry;
+	r->wallx -= floor((r->wallx));
+	r->texx = (r->wallx * (double)TEXWH);
+	if (r->side == 0 && r->raydirx > 0)
+		r->texx = TEXWH - r->texx - 1;
+	if (r->side == 1 && r->raydiry < 0)
+		r->texx = TEXWH - r->texx - 1;
+}
 
 static void tres(t_env *w, t_ray *r)
 {
@@ -33,29 +56,11 @@ static void tres(t_env *w, t_ray *r)
 			r->hit = 1;
 	}
 	if (r->side == 0)
-		r->pwalldst = fabs((r->mapx - r->rayposx + (1 - r->stepx) / 2) / r->raydirx);
+		r->pwalldst = fabs((r->mapx - r->rayposx +
+					(1 - r->stepx) / 2) / r->raydirx);
 	else
-		r->pwalldst = fabs((r->mapy - r->rayposy + (1 - r->stepy) / 2) / r->raydiry);
-	r->lheight = abs((int)(w->hscr / r->pwalldst));
-	r->drawstart = -(r->lheight) / 2 + w->hscr / 2;
-	if (r->drawstart < 0)
-		r->drawstart = 0;
-	r->drawend = r->lheight / 2 + w->hscr / 2;
-	if (r->drawend >= HEIGHT)
-		r->drawend = HEIGHT - 1;
-//////////////////////////////
-////////    NEW     //////////
-//////////////////////////////
-	if (r->side == 1)
-		r->wallx = r->rayposx + ((r->mapy - r->rayposy + (1 - r->stepy) / 2) / r->raydiry) * r->raydirx;
-	else
-		r->wallx = r->rayposy + ((r->mapx - r->rayposx + (1 - r->stepx) / 2) / r->raydirx) * r->raydiry;
-	r->texx = (r->wallx * (double)TEXWH);
-	if (r->side == 0 && r->raydirx > 0)
-		r->texx = TEXWH - r->texx - 1;
-	if (r->side == 1 && r->raydiry < 0)
-		r->texx = TEXWH - r->texx - 1;
-
+		r->pwalldst = fabs((r->mapy - r->rayposy +
+					(1 - r->stepy) / 2) / r->raydiry);
 }
 
 static void dos(t_ray *r)
@@ -96,7 +101,7 @@ static void uno(t_env *w, t_ray *r)
 	r->hit = 0;
 }
 
-void 		and_there_was_light(t_env *w, t_ray *r)
+void		and_there_was_light(t_env *w, t_ray *r)
 {
 	r->x = 0;
 	while (r->x < w->wscr)
@@ -104,8 +109,7 @@ void 		and_there_was_light(t_env *w, t_ray *r)
 		uno(w, r);
 		dos(r);
 		tres(w, r);
-		// test_couleur(w, r);
-		// test_couleur2(w, r);
+		etdequatre(w, r);
 		trace(r, r->drawstart, r->drawend, w);
 		r->x++;
 	}

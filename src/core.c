@@ -6,26 +6,26 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 17:12:35 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/06/01 03:54:43 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/03 20:59:35 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
 #include "../lib/colors.h"
 
-void 		motion_events(t_env *w)
+void		motion_events(t_env *w)
 {
 	if (MOTION.xrel < 0)
 	{
 		turn_left(w);
-		MOTION.x = WIDTH/2;
-		MOTION.y = HEIGHT/2;
+		MOTION.x = WIDTH / 2;
+		MOTION.y = HEIGHT / 2;
 	}
 	if (MOTION.xrel > 0)
 	{
 		turn_right(w);
-		MOTION.xrel = WIDTH/2;
-		MOTION.yrel = HEIGHT/2;
+		MOTION.xrel = WIDTH / 2;
+		MOTION.yrel = HEIGHT / 2;
 	}
 }
 
@@ -49,9 +49,9 @@ void		key_events(t_env *w)
 		mv_forward(w);
 }
 
-void 		hipressfps(t_env *w)
+void		hipressfps(t_env *w)
 {
-	double 	fps;
+	double	fps;
 
 	w->otime = w->time;
 	w->time = SDL_GetTicks();
@@ -61,7 +61,7 @@ void 		hipressfps(t_env *w)
 	SDL_Delay(16);
 }
 
-void 		dance(t_env *w, t_ray *r)
+void		dance(t_env *w, t_ray *r)
 {
 	while (1)
 	{

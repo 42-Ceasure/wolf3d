@@ -6,17 +6,17 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 04:42:57 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/02/23 07:03:49 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/03 21:04:52 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
 #include "../lib/colors.h"
 
-void 		turn_right(t_env *w)
+void		turn_right(t_env *w)
 {
-	double 	tmpx;
-	double 	tmpp;
+	double	tmpx;
+	double	tmpp;
 
 	tmpx = w->dirx;
 	tmpp = w->planx;
@@ -26,10 +26,10 @@ void 		turn_right(t_env *w)
 	w->plany = tmpp * sin(-PROT) + w->plany * cos(-PROT);
 }
 
-void 		turn_left(t_env *w)
+void		turn_left(t_env *w)
 {
-	double 	tmpx;
-	double 	tmpp;
+	double	tmpx;
+	double	tmpp;
 
 	tmpx = w->dirx;
 	tmpp = w->planx;

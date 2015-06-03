@@ -6,14 +6,14 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/27 16:03:12 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/06/01 03:40:15 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/03 21:01:30 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/wolf3d.h"
 #include "../lib/colors.h"
 
-void 		init_player(t_env *w)
+void		init_player(t_env *w)
 {
 	w->posx = 3;
 	w->posy = 4;
@@ -27,7 +27,7 @@ void 		init_player(t_env *w)
 	w->hscr = HEIGHT;
 }
 
-int 		init_sdl(t_env *w)
+int			init_sdl(t_env *w)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 		return (-1);
@@ -36,7 +36,7 @@ int 		init_sdl(t_env *w)
 									WIDTH,
 									HEIGHT,
 									SDL_WINDOW_BORDERLESS);
-	w->rdr = SDL_CreateRenderer(w->win, -1, SDL_RENDERER_ACCELERATED | 
+	w->rdr = SDL_CreateRenderer(w->win, -1, SDL_RENDERER_ACCELERATED |
 											SDL_RENDERER_PRESENTVSYNC);
 	w->pix = (Uint32 *)malloc(sizeof(Uint32) * WIDTH * HEIGHT);
 	w->txtr = SDL_CreateTexture(w->rdr, SDL_PIXELFORMAT_ARGB8888,
@@ -48,12 +48,12 @@ int 		init_sdl(t_env *w)
 	return (0);
 }
 
-void 		parse_map(char *av, t_env *world)
+void		parse_map(char *av, t_env *world)
 {
-	int 	fd;
-	int 	x;
-	int 	y;
-	char 	*l;
+	int		fd;
+	int		x;
+	int		y;
+	char	*l;
 
 	y = 0;
 	fd = open(av, O_RDONLY);
@@ -62,7 +62,6 @@ void 		parse_map(char *av, t_env *world)
 		x = 0;
 		while (l[x])
 		{
-
 			world->map[y][x] = l[x] - 48;
 			x++;
 		}
@@ -72,11 +71,11 @@ void 		parse_map(char *av, t_env *world)
 	close(fd);
 }
 
-int 		parse_dim(char *av, t_env *world)
+int			parse_dim(char *av, t_env *world)
 {
-	int 	fd;
-	int 	i;
-	char 	*l;
+	int		fd;
+	int		i;
+	char	*l;
 
 	MXSIZE = 0;
 	MYSIZE = 0;
@@ -95,9 +94,9 @@ int 		parse_dim(char *av, t_env *world)
 	return (0);
 }
 
-int 		parse(char *av, t_env *world)
+int			parse(char *av, t_env *world)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	if (parse_dim(av, world) != 0)
