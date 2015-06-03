@@ -44,43 +44,71 @@ static void cross(t_env *w, t_ray *r)
 
 static void wall(t_ray *r, int y1, int y2, t_env *w)
 {
-	r->y = y1;
-	if (y2 > HEIGHT)
-		y2 = HEIGHT;
-	if (r->y < 0)
-		r->y = 0;
-	r->start = r->y;
-	r->stop = y2;
-	while (r->y <= y2)
-	{
-		w->pix[r->x + (r->y * WIDTH)] = c2colorw(r, r->color2, r->color, w);
+	// r->y = y1;
+	// if (y2 > HEIGHT)
+	// 	y2 = HEIGHT;
+	// if (r->y < 0)
+	// 	r->y = 0;
+	// r->start = r->y;
+	// r->stop = y2;
+	// while (r->y <= y2)
+	// {
+	// 	w->pix[r->x + (r->y * WIDTH)] = c2colorw(r, r->color2, r->color, w);
 
+	// 	r->y++;
+	// }
+	int d;
+
+	r->y = y1;
+	while (r->y < y2)
+	{
+		d = r->y * 256 - HEIGHT * 128 + r->lheight * 128;
+		r->texy = ((d * 64) / r->lheight) / 256;
+		r->color = w->mur[64 * r->texy + r->texx];
+		if(r->side == 1) 
+			r->color = (r->color >> 1) & 8355711;
+		w->pix[r->x + (r->y * WIDTH)] = r->color;
 		r->y++;
 	}
 }
 
-static void fond(t_ray *r, t_env *w)
+void fond(t_ray *r, t_env *w)
 {
+	// r->y = 0;
+	// r->start = 0;
+	// r->stop = 150;
+	// while (r->y < r->stop)
+	// {
+	// 	w->pix[r->x + (r->y * WIDTH)] = color2color(r, AZUR, AZURIN);
+	// 	r->y++;
+	// }
+	// r->start = 150;
+	// r->stop = 202;
+	// while (r->y < r->stop)
+	// {
+	// 	w->pix[r->x + (r->y * WIDTH)] = color(r, AZURIN);
+	// 	r->y++;
+	// }
+	// r->start = 202;
+	// r->stop = HEIGHT;
+	// while (r->y < r->stop)
+	// {
+	// 	w->pix[r->x + (r->y * WIDTH)] = color2color(r, VERTGAZON, VERTDEHOOKER);
+	// 	r->y++;
+	// }
+	int y;
+
+	y = 0;
 	r->y = 0;
-	r->start = 0;
-	r->stop = 150;
-	while (r->y < r->stop)
+	while (r->y < 200)
 	{
-		w->pix[r->x + (r->y * WIDTH)] = color2color(r, AZUR, AZURIN);
+		w->pix[r->x + (r->y * WIDTH)] = w->sky[r->x + (r->y * WIDTH)];
 		r->y++;
 	}
-	r->start = 150;
-	r->stop = 202;
-	while (r->y < r->stop)
+	while (r->y < 405)
 	{
-		w->pix[r->x + (r->y * WIDTH)] = color(r, AZURIN);
-		r->y++;
-	}
-	r->start = 202;
-	r->stop = HEIGHT;
-	while (r->y < r->stop)
-	{
-		w->pix[r->x + (r->y * WIDTH)] = color2color(r, VERTGAZON, VERTDEHOOKER);
+		w->pix[r->x + (r->y * WIDTH)] = w->sol[r->x + (y * 768)];
+		y++;
 		r->y++;
 	}
 }

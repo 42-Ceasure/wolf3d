@@ -20,7 +20,7 @@ int				main(int ac, char **av)
 
 	world = (t_env *)malloc(sizeof(t_env));
 	rayon = (t_ray *)malloc(sizeof(t_ray));
-	if (ac != 2)
+	if (ac < 2)
 	{
 		write(1, "no file to open !!!\n", 20);
 		write(1, "use ./wolf3d /maps/[map].wlf\n", 29);
@@ -39,6 +39,7 @@ int				main(int ac, char **av)
 		return (0);
 	}
 	init_player(world);
+	make_it_beautifull(world);
 	if (world->win)
 		dance(world, rayon);
 	return (0);

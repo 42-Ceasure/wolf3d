@@ -38,7 +38,24 @@ static void tres(t_env *w, t_ray *r)
 		r->pwalldst = fabs((r->mapy - r->rayposy + (1 - r->stepy) / 2) / r->raydiry);
 	r->lheight = abs((int)(w->hscr / r->pwalldst));
 	r->drawstart = -(r->lheight) / 2 + w->hscr / 2;
+	if (r->drawstart < 0)
+		r->drawstart = 0;
 	r->drawend = r->lheight / 2 + w->hscr / 2;
+	if (r->drawend >= HEIGHT)
+		r->drawend = HEIGHT - 1;
+//////////////////////////////
+////////    NEW     //////////
+//////////////////////////////
+	if (r->side == 1)
+		r->wallx = r->rayposx + ((r->mapy - r->rayposy + (1 - r->stepy) / 2) / r->raydiry) * r->raydirx;
+	else
+		r->wallx = r->rayposy + ((r->mapx - r->rayposx + (1 - r->stepx) / 2) / r->raydirx) * r->raydiry;
+	r->texx = (int)(r->wallx * (double)TEXWH);
+	if (r->side == 0 && r->raydirx > 0)
+		r->texx = TEXWH - r->texx - 1;
+	if (r->side == 1 && r->raydiry < 0)
+		r->texx = TEXWH - r->texx - 1;
+
 }
 
 static void dos(t_ray *r)
@@ -87,8 +104,8 @@ void 		and_there_was_light(t_env *w, t_ray *r)
 		uno(w, r);
 		dos(r);
 		tres(w, r);
-		test_couleur(w, r);
-		test_couleur2(w, r);
+		// test_couleur(w, r);
+		// test_couleur2(w, r);
 		trace(r, r->drawstart, r->drawend, w);
 		r->x++;
 	}

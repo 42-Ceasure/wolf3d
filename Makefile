@@ -27,8 +27,9 @@ SRC=		main.c 		\
 			mouse_events.c  \
 			raycasting.c 	 \
 			tracing.c 		  \
-			colorispower.c
-			      
+			colorispower.c 	   \
+			textures.c
+
 SRCFIL=		$(addprefix $(SRCDIR),$(SRC))
 
 OBJ = $(SRC:.c=.o)
