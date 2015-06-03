@@ -51,7 +51,7 @@ static void		wall(t_ray *r, int y1, int y2, t_env *w)
 	{
 		d = r->y * 256 - HEIGHT * 128 + r->lheight * 128;
 		r->texy = ((d * 64) / r->lheight) / 256;
-		r->color = color(r, w->mur[64 * r->texy + r->texx]);
+		r->color = color(r, w->tmp[64 * r->texy + r->texx]);
 		w->pix[r->x + (r->y * WIDTH)] = r->color;
 		r->y++;
 	}

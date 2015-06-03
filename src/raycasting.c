@@ -110,6 +110,7 @@ void		and_there_was_light(t_env *w, t_ray *r)
 		dos(r);
 		tres(w, r);
 		etdequatre(w, r);
+		test_texture(w, r);
 		trace(r, r->drawstart, r->drawend, w);
 		r->x++;
 	}

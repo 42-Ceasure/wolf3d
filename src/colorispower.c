@@ -84,34 +84,18 @@ Uint32		c2colorw(t_ray *r, Uint32 color1, Uint32 color2)
 	return ((((((a << 8) + ro) << 8) + g) << 8) + b);
 }
 
-void		test_couleur2(t_env *w, t_ray *r)
+void		test_texture(t_env *w, t_ray *r)
 {
 	if (w->map[r->mapx][r->mapy] == 1)
-		r->color2 = BLANC;
+		w->tmp = w->mur1;
 	else if (w->map[r->mapx][r->mapy] == 2)
-		r->color2 = FEUILLEMORTE;
+		w->tmp = w->mur2;
 	else if (w->map[r->mapx][r->mapy] == 3)
-		r->color2 = VERTDEVESSIE;
+		w->tmp = w->mur3;
 	else if (w->map[r->mapx][r->mapy] == 4)
-		r->color2 = GARANCE;
+		w->tmp = w->mur4;
 	else if (w->map[r->mapx][r->mapy] == 5)
-		r->color2 = BRIQUE;
+		w->tmp = w->mur5;
 	else if (w->map[r->mapx][r->mapy] == 6)
-		r->color2 = AZURIN;
-}
-
-void		test_couleur(t_env *w, t_ray *r)
-{
-	if (w->map[r->mapx][r->mapy] == 1)
-		r->color = GRISACIER;
-	else if (w->map[r->mapx][r->mapy] == 2)
-		r->color = MARRON;
-	else if (w->map[r->mapx][r->mapy] == 3)
-		r->color = VERTSAPIN;
-	else if (w->map[r->mapx][r->mapy] == 4)
-		r->color = BORDEAUX;
-	else if (w->map[r->mapx][r->mapy] == 5)
-		r->color = BRIQUE;
-	else if (w->map[r->mapx][r->mapy] == 6)
-		r->color = AZURIN;
+		w->tmp = w->wood;
 }
