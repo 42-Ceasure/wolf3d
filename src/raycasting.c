@@ -50,7 +50,7 @@ static void tres(t_env *w, t_ray *r)
 		r->wallx = r->rayposx + ((r->mapy - r->rayposy + (1 - r->stepy) / 2) / r->raydiry) * r->raydirx;
 	else
 		r->wallx = r->rayposy + ((r->mapx - r->rayposx + (1 - r->stepx) / 2) / r->raydirx) * r->raydiry;
-	r->texx = (int)(r->wallx * (double)TEXWH);
+	r->texx = (r->wallx * (double)TEXWH);
 	if (r->side == 0 && r->raydirx > 0)
 		r->texx = TEXWH - r->texx - 1;
 	if (r->side == 1 && r->raydiry < 0)

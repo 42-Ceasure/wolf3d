@@ -74,43 +74,43 @@ static void wall(t_ray *r, int y1, int y2, t_env *w)
 
 void fond(t_ray *r, t_env *w)
 {
-	// r->y = 0;
-	// r->start = 0;
-	// r->stop = 150;
-	// while (r->y < r->stop)
-	// {
-	// 	w->pix[r->x + (r->y * WIDTH)] = color2color(r, AZUR, AZURIN);
-	// 	r->y++;
-	// }
-	// r->start = 150;
-	// r->stop = 202;
-	// while (r->y < r->stop)
-	// {
-	// 	w->pix[r->x + (r->y * WIDTH)] = color(r, AZURIN);
-	// 	r->y++;
-	// }
-	// r->start = 202;
-	// r->stop = HEIGHT;
-	// while (r->y < r->stop)
-	// {
-	// 	w->pix[r->x + (r->y * WIDTH)] = color2color(r, VERTGAZON, VERTDEHOOKER);
-	// 	r->y++;
-	// }
-	int y;
-
-	y = 0;
 	r->y = 0;
-	while (r->y < 200)
+	r->start = 0;
+	r->stop = 150;
+	while (r->y < r->stop)
 	{
-		w->pix[r->x + (r->y * WIDTH)] = w->sky[r->x + (r->y * WIDTH)];
+		w->pix[r->x + (r->y * WIDTH)] = color2color(r, AZUR, AZURIN);
 		r->y++;
 	}
-	while (r->y < 405)
+	r->start = 150;
+	r->stop = 202;
+	while (r->y < r->stop)
 	{
-		w->pix[r->x + (r->y * WIDTH)] = w->sol[r->x + (y * 768)];
-		y++;
+		w->pix[r->x + (r->y * WIDTH)] = color(r, AZURIN);
 		r->y++;
 	}
+	r->start = 202;
+	r->stop = HEIGHT;
+	while (r->y < r->stop)
+	{
+		w->pix[r->x + (r->y * WIDTH)] = color2color(r, VERTGAZON, VERTDEHOOKER);
+		r->y++;
+	}
+	// int y;
+
+	// y = 0;
+	// r->y = 0;
+	// while (r->y < 200)
+	// {
+	// 	w->pix[r->x + (r->y * WIDTH)] = w->sky[r->x + (r->y * WIDTH)];
+	// 	r->y++;
+	// }
+	// while (r->y < 405)
+	// {
+	// 	w->pix[r->x + (r->y * WIDTH)] = w->sol[r->x + (y * 768)];
+	// 	y++;
+	// 	r->y++;
+	// }
 }
 
 void 		trace(t_ray *r, int y1, int y2, t_env *w)
