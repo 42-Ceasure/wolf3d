@@ -6,7 +6,7 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 04:42:57 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/06/03 20:58:07 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/03 22:21:34 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 # define PMSP 		w->movspeed
 # define FOV 		0.85
 # define TEXWH 		64
-# define R			r->
 
 typedef struct		s_ray
 {

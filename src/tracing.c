@@ -6,7 +6,7 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 17:12:35 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/06/03 21:18:24 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/06/03 22:26:23 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,30 @@
 static void		cross(t_env *w, t_ray *r)
 {
 	r->y = 0;
-	w->pix[355 + 201 * WIDTH] = color(r, BLANC);
-	w->pix[355 + 202 * WIDTH] = color(r, BLANC);
-	w->pix[356 + 201 * WIDTH] = color(r, BLANC);
-	w->pix[356 + 202 * WIDTH] = color(r, BLANC);
-	w->pix[357 + 201 * WIDTH] = color(r, BLANC);
-	w->pix[357 + 202 * WIDTH] = color(r, BLANC);
-	w->pix[359 + 197 * WIDTH] = color(r, BLANC);
-	w->pix[359 + 198 * WIDTH] = color(r, BLANC);
-	w->pix[359 + 199 * WIDTH] = color(r, BLANC);
-	w->pix[360 + 197 * WIDTH] = color(r, BLANC);
-	w->pix[360 + 198 * WIDTH] = color(r, BLANC);
-	w->pix[360 + 199 * WIDTH] = color(r, BLANC);
-	w->pix[359 + 204 * WIDTH] = color(r, BLANC);
-	w->pix[359 + 205 * WIDTH] = color(r, BLANC);
-	w->pix[359 + 206 * WIDTH] = color(r, BLANC);
-	w->pix[360 + 204 * WIDTH] = color(r, BLANC);
-	w->pix[360 + 205 * WIDTH] = color(r, BLANC);
-	w->pix[360 + 206 * WIDTH] = color(r, BLANC);
-	w->pix[362 + 201 * WIDTH] = color(r, BLANC);
-	w->pix[362 + 202 * WIDTH] = color(r, BLANC);
-	w->pix[363 + 201 * WIDTH] = color(r, BLANC);
-	w->pix[363 + 202 * WIDTH] = color(r, BLANC);
-	w->pix[364 + 201 * WIDTH] = color(r, BLANC);
-	w->pix[364 + 202 * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 - 5 + (HEIGHT / 2 - 1) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 - 5 + HEIGHT / 2 * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 - 4 + (HEIGHT / 2 - 1) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 - 4 + HEIGHT / 2 * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 - 3 + (HEIGHT / 2 - 1) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 - 3 + HEIGHT / 2 * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 - 1 + (HEIGHT / 2 - 5) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 - 1 + (HEIGHT / 2 - 4) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 - 1 + (HEIGHT / 2 - 3) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 + (HEIGHT / 2 - 5) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 + (HEIGHT / 2 - 4) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 + (HEIGHT / 2 - 3) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 - 1 + (HEIGHT / 2 + 2) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 - 1 + (HEIGHT / 2 + 3) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 - 1 + (HEIGHT / 2 + 4) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 + (HEIGHT / 2 + 2) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 + (HEIGHT / 2 + 3) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 + (HEIGHT / 2 + 4) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 + 2 + (HEIGHT / 2 - 1) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 + 2 + HEIGHT / 2 * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 + 3 + (HEIGHT / 2 - 1) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 + 3 + HEIGHT / 2 * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 + 4 + (HEIGHT / 2 - 1) * WIDTH] = color(r, BLANC);
+	w->pix[WIDTH / 2 + 4 + HEIGHT / 2 * WIDTH] = color(r, BLANC);
 }
 
 static void		wall(t_ray *r, int y1, int y2, t_env *w)
