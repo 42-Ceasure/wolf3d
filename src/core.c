@@ -57,7 +57,7 @@ void		hipressfps(t_env *w)
 	w->time = SDL_GetTicks();
 	fps = (w->time - w->otime) / 1000.0;
 	w->movspeed = fps * 4.0;
-	w->rotspeed = fps * 1.6;
+	w->rotspeed = fps * 2.5;
 	SDL_Delay(16);
 }
 
