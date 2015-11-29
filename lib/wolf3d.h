@@ -19,7 +19,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include "colors.h"
-# include "libft/libft.h"
+# include "libft/inc/libft.h"
 # include "SDL2.framework/Headers/SDL.h"
 
 # define NAME 		"wolf3d"
