@@ -29,24 +29,24 @@ void	make_it_beautifull(t_env *w)
 	tmp = SDL_ConvertSurfaceFormat(w->load, SDL_PIXELFORMAT_ARGB8888, 0);
 	SDL_FreeSurface(w->load);
 	w->sol = (Uint32 *)malloc(sizeof(Uint32) * tmp->w * tmp->h);
-	ft_memcpy(w->sol, tmp->pixels, (sizeof(Uint32) * tmp->w * tmp->h));
-	// w->sol = tmp->pixels;
+	// ft_memcpy(w->sol, tmp->pixels, (sizeof(Uint32) * tmp->w * tmp->h));
+	w->sol = tmp->pixels;
 	SDL_FreeSurface(tmp);
 
 	w->load = SDL_LoadBMP("./src/textures/mur.bmp");
 	tmp = SDL_ConvertSurfaceFormat(w->load, SDL_PIXELFORMAT_ARGB8888, 0);
 	SDL_FreeSurface(w->load);
 	w->mur1 = (Uint32 *)malloc(sizeof(Uint32) * tmp->w * tmp->h);
-	// ft_memcpy(w->mur1, tmp->pixels, (sizeof(Uint32) * tmp->w * tmp->h));
-	w->mur1 = tmp->pixels;
+	ft_memcpy(w->mur1, tmp->pixels, (sizeof(Uint32) * tmp->w * tmp->h));
+	// w->mur1 = tmp->pixels;
 	SDL_FreeSurface(tmp);
 
-	w->load = SDL_LoadBMP("./src/textures/bmur.bmp");
+	w->load = SDL_LoadBMP("./src/textures/pika.bmp");
 	tmp = SDL_ConvertSurfaceFormat(w->load, SDL_PIXELFORMAT_ARGB8888, 0);
 	SDL_FreeSurface(w->load);
 	w->mur2 = (Uint32 *)malloc(sizeof(Uint32) * tmp->w * tmp->h);
-	// ft_memcpy(w->mur2, tmp->pixels, (sizeof(Uint32) * tmp->w * tmp->h));
-	w->mur2 = tmp->pixels;
+	ft_memcpy(w->mur2, tmp->pixels, (sizeof(Uint32) * tmp->w * tmp->h));
+	// w->mur2 = tmp->pixels;
 	SDL_FreeSurface(tmp);
 
 	w->load = SDL_LoadBMP("./src/textures/kikki.bmp");
@@ -73,7 +73,7 @@ void	make_it_beautifull(t_env *w)
 	// w->mur5 = tmp->pixels;
 	SDL_FreeSurface(tmp);
 
-	w->load = SDL_LoadBMP("./src/textures/forest.bmp");
+	w->load = SDL_LoadBMP("./src/textures/mur.bmp");
 	tmp = SDL_ConvertSurfaceFormat(w->load, SDL_PIXELFORMAT_ARGB8888, 0);
 	SDL_FreeSurface(w->load);
 	w->wood = (Uint32 *)malloc(sizeof(Uint32) * tmp->w * tmp->h);

@@ -103,6 +103,7 @@ void			fond2(t_ray *r, t_env *w)
 						w->sky[TEXWH * r->ftexy + r->ftexx];
 		r->y++;
 	}
+	
 }
 
 void			trace(t_ray *r, int y1, int y2, t_env *w)

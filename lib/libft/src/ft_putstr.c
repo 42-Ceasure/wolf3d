@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/16 17:48:54 by cglavieu          #+#    #+#             */
+/*   Created: 2015/01/16 16:13:49 by cglavieu          #+#    #+#             */
 /*   Updated: 2015/01/17 16:59:47 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_memdel(void **ap)
+void	ft_putstr(char const *s)
 {
-	if (ap != NULL)
+	int i;
+
+	i = 0;
+	if (s)
 	{
-		free (*ap);
-		*ap = NULL;
+		while(s[i])
+			i++;
+		write(1, s, i);
 	}
 }
