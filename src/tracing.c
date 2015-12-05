@@ -103,6 +103,21 @@ void			fond2(t_ray *r, t_env *w)
 						w->sky[TEXWH * r->ftexy + r->ftexx];
 		r->y++;
 	}
+	// r->y = 0;
+	// r->start = 0;
+	// r->stop = 150;
+	// while (r->y < r->stop && r->y < r->drawstart)
+	// {
+	// 	w->pix[r->x + (r->y * WIDTH)] = color2color(r, ABSINTHE, AUBERGINE);
+	// 	r->y++;
+	// }
+	// r->start = 150;
+	// r->stop = 202;
+	// while (r->y < r->stop  && r->y < r->drawstart)
+	// {
+	// 	w->pix[r->x + (r->y * WIDTH)] = color(r, AUBERGINE);
+	// 	r->y++;
+	// }
 }
 
 void			trace(t_ray *r, int y1, int y2, t_env *w)

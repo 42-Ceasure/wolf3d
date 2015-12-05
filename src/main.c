@@ -22,10 +22,13 @@ int				main(int ac, char **av)
 	rayon = (t_ray *)malloc(sizeof(t_ray));
 	if (ac < 2)
 	{
-		write(1, "use ./wolf3d /maps/[map].wlf\n", 29);
-		return (0);
+		if (parse("test_maps/yes.wlf", world) != 0)
+		{
+			write(1, "There seems to be a problem with the map...\n", 44);;
+			return (0);
+		}
 	}
-	if (parse(av[1], world) != 0)
+	else if (parse(av[1], world) != 0)
 	{
 		write(1, "There seems to be a problem with the map...\n", 44);
 		return (0);
