@@ -1,0 +1,69 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2015/02/16 14:40:47 by cglavieu          #+#    #+#              #
+#    Updated: 2015/05/19 18:01:20 by cglavieu         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+.PHONY: clean, fclean, re
+
+CC = gcc
+
+CFLAG = -Wall -Wextra -Werror
+
+NAME = wolf3d
+
+SRCDIR=		./src/
+
+SRC=		main.c 		\
+			init.c 		 \
+			core.c 		  \
+			key_events.c   \
+			mouse_events.c  \
+			raycasting.c 	 \
+			tracing.c 		  \
+			colorispower.c 	   \
+			textures.c
+
+SRCFIL=		$(addprefix $(SRCDIR),$(SRC))
+
+OBJ = $(SRC:.c=.o)
+
+OBJDIR = ./obj/
+
+LIBFT = ./lib/libft/
+
+LIBFTEXE = $(LIBFT)libft.a
+
+SDL_FW = -L ./SDL-test/include/ -lSDL2
+
+all:    $(NAME)
+
+LIBS = -L./SDL-test/include -lSDL2 -L$(LIBFT) -lft -lm
+
+$(NAME): $(addprefix $(OBJDIR),$(OBJ)) $(LIBFTEXE)
+	@$(CC) $(CFLAG) -o $(NAME) $(addprefix $(OBJDIR), $(OBJ)) $(LIBS)
+
+$(OBJDIR)%.o: $(SRCDIR)%.c
+		@mkdir -p $(OBJDIR)
+		@$(CC) $(CFLAG) -I ./ -I  $(LIBFT) -I ./SDL-test/include/ -o $@ -c $<
+
+$(LIBFTEXE): $(LIBFT)
+	@make -C $(LIBFT)
+
+clean:	
+		@rm -Rf  $(OBJDIR)
+		@make -C $(LIBFT) clean
+
+fclean: 
+		@rm -Rf  $(OBJDIR)	
+		@rm -f $(NAME)
+		@make -C $(LIBFT) fclean
+
+re:		fclean all
+
